@@ -7,15 +7,19 @@ from kaya_toast.models import ContentIdea
 from kaya_toast.preference import summarize_feedback
 
 
-def generate_report(ideas: list[ContentIdea], reports_dir: str | Path = "reports") -> Path:
+def generate_report(
+    ideas: list[ContentIdea],
+    reports_dir: str | Path = "reports",
+    source_summary: dict | None = None,
+) -> Path:
     output_dir = Path(reports_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     report_path = output_dir / f"{date.today().isoformat()}-kaya-toast.md"
-    report_path.write_text(render_report(ideas), encoding="utf-8")
+    report_path.write_text(render_report(ideas, source_summary), encoding="utf-8")
     return report_path
 
 
-def render_report(ideas: list[ContentIdea]) -> str:
+def render_report(ideas: list[ContentIdea], source_summary: dict | None = None) -> str:
     post_ideas = [idea for idea in ideas if idea.recommendation == "post"]
     parked_ideas = [idea for idea in ideas if idea.recommendation == "park"]
     rejected_ideas = [idea for idea in ideas if idea.recommendation == "reject"]
@@ -27,6 +31,9 @@ def render_report(ideas: list[ContentIdea]) -> str:
         "## Preference Memory",
         "",
         _render_preference_memory(ideas),
+        "## Source Summary",
+        "",
+        _render_source_summary(source_summary, ideas),
         "## Top LinkedIn Content Ideas",
         "",
         _render_ideas(post_ideas),
@@ -113,3 +120,34 @@ def _format_adjustment(value: int) -> str:
     if value > 0:
         return f"+{value}"
     return str(value)
+
+
+def _render_source_summary(
+    source_summary: dict | None,
+    ideas: list[ContentIdea],
+) -> str:
+    if source_summary is None:
+        source_names = sorted({idea.source.split(":", 1)[0] for idea in ideas})
+        source_summary = {
+            "article_count": len(ideas),
+            "source_names": source_names,
+            "warnings": [],
+        }
+
+    source_names = source_summary.get("source_names", [])
+    warnings = source_summary.get("warnings", [])
+    return "\n".join(
+        [
+            f"- Articles collected: {source_summary.get('article_count', 0)}",
+            f"- Sources: {', '.join(source_names) if source_names else 'None'}",
+            "- Source warnings:",
+            _render_source_warnings(warnings),
+            "",
+        ]
+    )
+
+
+def _render_source_warnings(warnings: list[str]) -> str:
+    if not warnings:
+        return "  - None"
+    return "\n".join(f"  - {warning}" for warning in warnings)

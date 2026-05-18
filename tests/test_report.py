@@ -28,6 +28,7 @@ def test_report_file_is_created(tmp_path: Path):
     assert path.exists()
     assert "## Top LinkedIn Content Ideas" in path.read_text(encoding="utf-8")
     assert "## Preference Memory" in path.read_text(encoding="utf-8")
+    assert "## Source Summary" in path.read_text(encoding="utf-8")
     assert "Preference Adjustment:" in path.read_text(encoding="utf-8")
     assert "Final Score:" in path.read_text(encoding="utf-8")
 

@@ -4,7 +4,8 @@ import argparse
 from pathlib import Path
 
 from kaya_toast.classify import classify_articles
-from kaya_toast.collect import collect_from_json
+from kaya_toast.collect import collect_from_json, collect_from_rss_sources, save_articles_json
+from kaya_toast.config import load_sources
 from kaya_toast.preference import SUPPORTED_RATINGS, add_feedback
 from kaya_toast.recommend import recommend_articles
 from kaya_toast.report import generate_report
@@ -19,7 +20,9 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command")
 
     run_parser = subparsers.add_parser("run", help="Run full pipeline and generate report")
-    run_parser.add_argument("--input", required=True, help="Path to local article JSON")
+    run_input = run_parser.add_mutually_exclusive_group(required=True)
+    run_input.add_argument("--input", help="Path to local article JSON")
+    run_input.add_argument("--rss", action="store_true", help="Collect configured RSS sources")
 
     classify_parser = subparsers.add_parser("classify", help="Classify local articles")
     classify_parser.add_argument("--input", required=True, help="Path to local article JSON")
@@ -31,6 +34,8 @@ def build_parser() -> argparse.ArgumentParser:
     feedback_parser.add_argument("--idea-id", required=True, help="Content idea ID")
     feedback_parser.add_argument("--rating", required=True, help="Feedback rating")
     feedback_parser.add_argument("--notes", default="", help="Optional feedback notes")
+
+    subparsers.add_parser("collect-rss", help="Collect configured RSS sources")
 
     return parser
 
@@ -55,7 +60,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.command in {"run", "report"}:
-        report_path = run_pipeline(args.input)
+        report_path = run_pipeline(input_path=args.input, use_rss=getattr(args, "rss", False))
         print(f"Report written: {report_path}")
         return 0
 
@@ -67,16 +72,47 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Feedback saved: {record['idea_id']} -> {record['rating']}")
         return 0
 
+    if args.command == "collect-rss":
+        result = collect_from_rss_sources(load_sources())
+        output_path = save_articles_json(result.articles)
+        for source, count in result.counts_by_source.items():
+            print(f"{source}: {count}")
+        for warning in result.warnings:
+            print(f"WARNING: {warning}")
+        print(f"Saved RSS articles: {output_path}")
+        return 0
+
     parser.print_help()
     return 0
 
 
-def run_pipeline(input_path: str | Path) -> Path:
-    articles = collect_from_json(input_path)
+def run_pipeline(input_path: str | Path | None = None, use_rss: bool = False) -> Path:
+    source_summary = None
+    if use_rss:
+        collection = collect_from_rss_sources(load_sources())
+        save_articles_json(collection.articles)
+        articles = collection.articles
+        source_summary = {
+            "article_count": len(collection.articles),
+            "source_names": list(collection.counts_by_source.keys()),
+            "warnings": collection.warnings,
+        }
+        for warning in collection.warnings:
+            print(f"WARNING: {warning}")
+    elif input_path is not None:
+        articles = collect_from_json(input_path)
+        source_summary = {
+            "article_count": len(articles),
+            "source_names": sorted({article.source for article in articles}),
+            "warnings": [],
+        }
+    else:
+        raise ValueError("Either input_path or use_rss=True is required")
+
     classifications = classify_articles(articles)
     scores = {
         article.id: score_article(article, classifications[article.id])
         for article in articles
     }
     ideas = recommend_articles(articles, classifications, scores)
-    return generate_report(ideas)
+    return generate_report(ideas, source_summary=source_summary)

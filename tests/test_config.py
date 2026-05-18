@@ -8,6 +8,7 @@ def test_config_loads_expected_sections():
     assert "taxonomy" in config
     assert "scoring" in config
     assert "preferences" in config
+    assert "sources" in config
     assert "ai_native_pm_mindset" in config["taxonomy"]["categories"]
     assert config["scoring"]["thresholds"]["post"] == 70
 

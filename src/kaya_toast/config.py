@@ -30,9 +30,14 @@ def load_preferences(config_dir: Path = CONFIG_DIR) -> dict[str, Any]:
     return load_yaml(config_dir / "preferences.yaml")
 
 
+def load_sources(config_dir: Path = CONFIG_DIR) -> dict[str, Any]:
+    return load_yaml(config_dir / "sources.yaml")
+
+
 def load_all_config(config_dir: Path = CONFIG_DIR) -> dict[str, dict[str, Any]]:
     return {
         "taxonomy": load_taxonomy(config_dir),
         "scoring": load_scoring(config_dir),
         "preferences": load_preferences(config_dir),
+        "sources": load_sources(config_dir),
     }

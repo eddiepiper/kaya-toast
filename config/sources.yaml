@@ -1,0 +1,28 @@
+sources:
+  - name: Mind the Product
+    type: rss
+    url: https://www.mindtheproduct.com/feed/
+    tags:
+      - product_management
+      - ai_pm
+
+  - name: O'Reilly Radar
+    type: rss
+    url: https://www.oreilly.com/radar/feed/
+    tags:
+      - ai
+      - enterprise_ai
+
+  - name: Anthropic News
+    type: rss
+    url: https://www.anthropic.com/news/rss.xml
+    tags:
+      - ai
+      - frontier_ai
+
+  - name: OpenAI News
+    type: rss
+    url: https://openai.com/news/rss.xml
+    tags:
+      - ai
+      - product_ai
