@@ -38,6 +38,10 @@ def load_llm(config_dir: Path = CONFIG_DIR) -> dict[str, Any]:
     return load_yaml(config_dir / "llm.yaml")
 
 
+def load_pillars(config_dir: Path = CONFIG_DIR) -> dict[str, Any]:
+    return load_yaml(config_dir / "pillars.yaml")
+
+
 def load_all_config(config_dir: Path = CONFIG_DIR) -> dict[str, dict[str, Any]]:
     return {
         "taxonomy": load_taxonomy(config_dir),
@@ -45,4 +49,5 @@ def load_all_config(config_dir: Path = CONFIG_DIR) -> dict[str, dict[str, Any]]:
         "preferences": load_preferences(config_dir),
         "sources": load_sources(config_dir),
         "llm": load_llm(config_dir),
+        "pillars": load_pillars(config_dir),
     }

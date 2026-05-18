@@ -39,6 +39,12 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("collect-rss", help="Collect configured RSS sources")
     daily_parser = subparsers.add_parser("daily", help="Run daily RSS workflow")
     daily_parser.add_argument("--interpret", action="store_true", help="Run optional strategic interpretation")
+    daily_parser.add_argument(
+        "--pillar",
+        default="ai_native_pm",
+        choices=["ai_native_pm", "ai_native_banking", "founder_systems", "healthcare_caregiver_ai", "all"],
+        help="Content pillar filter",
+    )
     subparsers.add_parser("weekly", help="Generate weekly strategy brief")
 
     interpret_parser = subparsers.add_parser("interpret", help="Interpret a deterministic report")
@@ -98,7 +104,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "daily":
         try:
-            report_path = run_daily(interpret=args.interpret)
+            report_path = run_daily(interpret=args.interpret, pillar=args.pillar)
         except RuntimeError as error:
             print(f"Daily run failed: {error}")
             return 1

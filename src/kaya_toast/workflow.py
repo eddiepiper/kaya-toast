@@ -15,6 +15,7 @@ from kaya_toast.collect import (
 )
 from kaya_toast.config import load_sources
 from kaya_toast.models import Article, ContentIdea
+from kaya_toast.pillars import filter_by_pillar
 from kaya_toast.recommend import recommend_articles
 from kaya_toast.report import generate_report
 from kaya_toast.score import score_article
@@ -35,7 +36,7 @@ def build_ideas(articles: list[Article]) -> list[ContentIdea]:
     return recommend_articles(articles, classifications, scores)
 
 
-def run_daily(interpret: bool = False) -> Path:
+def run_daily(interpret: bool = False, pillar: str = "ai_native_pm") -> Path:
     collection = collect_from_rss_sources(load_sources())
     articles = collection.articles
     warnings = list(collection.warnings)
@@ -55,7 +56,7 @@ def run_daily(interpret: bool = False) -> Path:
             f"{LATEST_RSS_PATH}"
         )
 
-    ideas = build_ideas(articles)
+    ideas = filter_by_pillar(build_ideas(articles), pillar)
     source_summary = {
         "article_count": len(articles),
         "source_names": source_names,

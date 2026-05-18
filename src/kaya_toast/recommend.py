@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from kaya_toast.fluff import fluff_check
 from kaya_toast.models import Article, ClassificationResult, ContentIdea, ScoreResult
+from kaya_toast.pillars import classify_pillar
 from kaya_toast.preference import calculate_preference_adjustment
 
 
@@ -46,7 +47,8 @@ def build_content_idea(
         recommendation=score.recommendation,
     )
     preference_adjustment = calculate_preference_adjustment(base_idea)
-    final_score = max(0, score.total_score + preference_adjustment)
+    pillar = classify_pillar(article=article, idea=base_idea)
+    final_score = max(0, score.total_score + preference_adjustment + pillar.score)
     return ContentIdea(
         idea_id=idea_id,
         topic=topic,
@@ -65,6 +67,10 @@ def build_content_idea(
         recommendation=_recommendation_for(final_score),
         preference_adjustment=preference_adjustment,
         final_score=final_score,
+        primary_pillar=pillar.primary_pillar,
+        secondary_pillar=pillar.secondary_pillar,
+        pillar_confidence=pillar.confidence,
+        pillar_score=pillar.score,
     )
 
 

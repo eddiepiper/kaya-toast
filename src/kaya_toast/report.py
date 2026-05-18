@@ -34,6 +34,18 @@ def render_report(ideas: list[ContentIdea], source_summary: dict | None = None) 
         "## Source Summary",
         "",
         _render_source_summary(source_summary, ideas),
+        "## AI-native PM Ideas",
+        "",
+        _render_pillar_ideas(ideas, "ai_native_pm"),
+        "## AI-native Banking Ideas",
+        "",
+        _render_pillar_ideas(ideas, "ai_native_banking"),
+        "## Founder Systems Ideas",
+        "",
+        _render_pillar_ideas(ideas, "founder_systems"),
+        "## Healthcare / Caregiver AI Ideas",
+        "",
+        _render_pillar_ideas(ideas, "healthcare_caregiver_ai"),
         "## Top LinkedIn Content Ideas",
         "",
         _render_ideas(post_ideas),
@@ -65,6 +77,10 @@ def _render_ideas(ideas: list[ContentIdea]) -> str:
                     f"- Idea ID: {idea.idea_id}",
                     f"- Topic: {idea.topic}",
                     f"- Category: {idea.category}",
+                    f"- Primary pillar: {idea.primary_pillar}",
+                    f"- Secondary pillar: {idea.secondary_pillar or 'None'}",
+                    f"- Pillar confidence: {idea.pillar_confidence}",
+                    f"- Pillar score: +{idea.pillar_score}",
                     f"- Source: {idea.source}",
                     f"- Why it matters: {idea.why_it_matters}",
                     f"- Target audience: {idea.target_audience}",
@@ -151,3 +167,17 @@ def _render_source_warnings(warnings: list[str]) -> str:
     if not warnings:
         return "  - None"
     return "\n".join(f"  - {warning}" for warning in warnings)
+
+
+def _render_pillar_ideas(ideas: list[ContentIdea], pillar: str) -> str:
+    matching = [
+        idea
+        for idea in ideas
+        if idea.primary_pillar == pillar or idea.secondary_pillar == pillar
+    ][:5]
+    if not matching:
+        return "None.\n"
+    return "\n".join(
+        f"- {idea.topic} ({idea.recommendation}, final score {idea.final_score})"
+        for idea in matching
+    ) + "\n"

@@ -1,0 +1,13 @@
+pillars:
+  ai_native_pm:
+    priority: primary
+    description: Traditional PM to AI-native PM transition
+  ai_native_banking:
+    priority: secondary
+    description: Banking workflows becoming AI-native decision systems
+  founder_systems:
+    priority: secondary
+    description: AI systems for solo founder and small-team leverage
+  healthcare_caregiver_ai:
+    priority: secondary
+    description: AI for healthcare, elderly care, caregiver support

@@ -50,11 +50,15 @@ class ContentIdea:
     recommendation: str
     preference_adjustment: int = 0
     final_score: int | None = None
+    primary_pillar: str = "ai_native_pm"
+    secondary_pillar: str | None = None
+    pillar_confidence: float = 0.0
+    pillar_score: int = 0
 
     def __post_init__(self) -> None:
         if self.final_score is None:
             object.__setattr__(
                 self,
                 "final_score",
-                self.total_score + self.preference_adjustment,
+                self.total_score + self.preference_adjustment + self.pillar_score,
             )
