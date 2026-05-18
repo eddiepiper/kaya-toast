@@ -5,6 +5,7 @@ from pathlib import Path
 
 from kaya_toast.classify import classify_articles
 from kaya_toast.collect import collect_from_json
+from kaya_toast.preference import SUPPORTED_RATINGS, add_feedback
 from kaya_toast.recommend import recommend_articles
 from kaya_toast.report import generate_report
 from kaya_toast.score import score_article
@@ -25,6 +26,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     report_parser = subparsers.add_parser("report", help="Generate Markdown report")
     report_parser.add_argument("--input", required=True, help="Path to local article JSON")
+
+    feedback_parser = subparsers.add_parser("feedback", help="Record local content idea feedback")
+    feedback_parser.add_argument("--idea-id", required=True, help="Content idea ID")
+    feedback_parser.add_argument("--rating", required=True, help="Feedback rating")
+    feedback_parser.add_argument("--notes", default="", help="Optional feedback notes")
 
     return parser
 
@@ -51,6 +57,14 @@ def main(argv: list[str] | None = None) -> int:
     if args.command in {"run", "report"}:
         report_path = run_pipeline(args.input)
         print(f"Report written: {report_path}")
+        return 0
+
+    if args.command == "feedback":
+        if args.rating not in SUPPORTED_RATINGS:
+            allowed = ", ".join(sorted(SUPPORTED_RATINGS))
+            parser.error(f"invalid rating '{args.rating}'. Supported ratings: {allowed}")
+        record = add_feedback(args.idea_id, args.rating, args.notes)
+        print(f"Feedback saved: {record['idea_id']} -> {record['rating']}")
         return 0
 
     parser.print_help()

@@ -1,9 +1,17 @@
 # kaya-toast Daily Brief
 
+## Preference Memory
+
+- Total feedback records: 1
+- Most liked categories: None
+- Most rejected categories: None
+- Current preference adjustment summary: No active preference adjustments
+
 ## Top LinkedIn Content Ideas
 
 ### AI-native PMs are not faster PRD writers
 
+- Idea ID: ai_native_pm_mindset::ai-native-pms-are-not-faster-prd-writers
 - Topic: AI-native PMs are not faster PRD writers
 - Category: ai_native_pm_mindset
 - Source: Product Ops Review: AI-native PMs are redesigning decision loops, not just writing PRDs faster
@@ -15,11 +23,14 @@
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 110
+- Preference Adjustment: 0
+- Final Score: 110
 - Fluff risk: 0
 - Recommendation: post
 
 ### Context engineering is becoming a PM operating skill
 
+- Idea ID: context_engineering::context-engineering-is-becoming-a-pm-operating-skill
 - Topic: Context engineering is becoming a PM operating skill
 - Category: context_engineering
 - Source: AI Product Notes: Context engineering for product managers
@@ -31,11 +42,14 @@
   - Bad AI output is often a context design problem.
   - PMs need to design what AI knows before asking what AI can do.
 - Score: 95
+- Preference Adjustment: 0
+- Final Score: 95
 - Fluff risk: 0
 - Recommendation: post
 
 ### AI governance is product work, not only policy work
 
+- Idea ID: ai_governance::ai-governance-is-product-work-not-only-policy-work
 - Topic: AI governance is product work, not only policy work
 - Category: ai_governance
 - Source: Risk Product Journal: AI governance controls for product teams
@@ -47,6 +61,8 @@
   - Controls are not bureaucracy when AI is making workflow decisions.
   - The PM role in AI governance is designing the review loop.
 - Score: 90
+- Preference Adjustment: 0
+- Final Score: 90
 - Fluff risk: 0
 - Recommendation: post
 
@@ -54,6 +70,7 @@
 
 ### Enterprise AI needs workflow redesign before tool rollout
 
+- Idea ID: enterprise_ai_operating_models::enterprise-ai-needs-workflow-redesign-before-tool-rollout
 - Topic: Enterprise AI needs workflow redesign before tool rollout
 - Category: enterprise_ai_operating_models
 - Source: Enterprise AI Weekly: Enterprise AI workflow redesign before tool rollout
@@ -65,11 +82,14 @@
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 65
+- Preference Adjustment: 0
+- Final Score: 65
 - Fluff risk: 0
 - Recommendation: park
 
 ### AI governance is product work, not only policy work
 
+- Idea ID: ai_governance::ai-governance-is-product-work-not-only-policy-work
 - Topic: AI governance is product work, not only policy work
 - Category: ai_governance
 - Source: Digital Banking Brief: Banking AI transformation needs product-led controls
@@ -81,6 +101,8 @@
   - Controls are not bureaucracy when AI is making workflow decisions.
   - The PM role in AI governance is designing the review loop.
 - Score: 50
+- Preference Adjustment: 0
+- Final Score: 50
 - Fluff risk: 0
 - Recommendation: park
 
@@ -88,6 +110,7 @@
 
 ### AI can speed discovery only when PMs protect evidence quality
 
+- Idea ID: product_discovery_with_ai::ai-can-speed-discovery-only-when-pms-protect-evidence-quality
 - Topic: AI can speed discovery only when PMs protect evidence quality
 - Category: product_discovery_with_ai
 - Source: Discovery Lab: Product discovery with AI still needs customer evidence
@@ -99,11 +122,14 @@
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 35
+- Preference Adjustment: 0
+- Final Score: 35
 - Fluff risk: 0
 - Recommendation: reject
 
 ### AI-native PMs are not faster PRD writers
 
+- Idea ID: ai_native_pm_mindset::ai-native-pms-are-not-faster-prd-writers
 - Topic: AI-native PMs are not faster PRD writers
 - Category: ai_native_pm_mindset
 - Source: Prompt Hacks Daily: Top 10 prompts every PM needs to unlock productivity
@@ -115,11 +141,14 @@
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 0
+- Preference Adjustment: 0
+- Final Score: 0
 - Fluff risk: 95
 - Recommendation: reject
 
 ### AI-native PMs are not faster PRD writers
 
+- Idea ID: ai_native_pm_mindset::ai-native-pms-are-not-faster-prd-writers
 - Topic: AI-native PMs are not faster PRD writers
 - Category: ai_native_pm_mindset
 - Source: Future Buzz: The AI revolution will change everything and transform your life
@@ -131,6 +160,8 @@
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 0
+- Preference Adjustment: 0
+- Final Score: 0
 - Fluff risk: 100
 - Recommendation: reject
 

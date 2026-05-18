@@ -48,3 +48,13 @@ class ContentIdea:
     total_score: int
     fluff_score: int
     recommendation: str
+    preference_adjustment: int = 0
+    final_score: int | None = None
+
+    def __post_init__(self) -> None:
+        if self.final_score is None:
+            object.__setattr__(
+                self,
+                "final_score",
+                self.total_score + self.preference_adjustment,
+            )

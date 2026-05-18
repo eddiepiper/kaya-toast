@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from kaya_toast.fluff import fluff_check
 from kaya_toast.models import Article, ClassificationResult, ContentIdea, ScoreResult
+from kaya_toast.preference import calculate_preference_adjustment
 
 
 CATEGORY_ANGLES = {
@@ -26,8 +27,9 @@ def build_content_idea(
 ) -> ContentIdea:
     topic = _topic_for(article, classification.category)
     fluff = fluff_check(article)
-    return ContentIdea(
-        idea_id=f"idea-{article.id}",
+    idea_id = _idea_id_for(classification.category, topic)
+    base_idea = ContentIdea(
+        idea_id=idea_id,
         topic=topic,
         source_article_id=article.id,
         category=classification.category,
@@ -43,6 +45,27 @@ def build_content_idea(
         fluff_score=fluff.fluff_score,
         recommendation=score.recommendation,
     )
+    preference_adjustment = calculate_preference_adjustment(base_idea)
+    final_score = max(0, score.total_score + preference_adjustment)
+    return ContentIdea(
+        idea_id=idea_id,
+        topic=topic,
+        source_article_id=article.id,
+        category=classification.category,
+        source=f"{article.source}: {article.title}",
+        why_it_matters=_why_it_matters(classification.category),
+        target_audience=_target_audience(classification.category),
+        suggested_angle=CATEGORY_ANGLES.get(
+            classification.category,
+            "Turn the source into a practical AI-native PM operating lesson.",
+        ),
+        hook_options=_hooks_for(classification.category),
+        total_score=score.total_score,
+        fluff_score=fluff.fluff_score,
+        recommendation=_recommendation_for(final_score),
+        preference_adjustment=preference_adjustment,
+        final_score=final_score,
+    )
 
 
 def recommend_articles(
@@ -54,7 +77,24 @@ def recommend_articles(
         build_content_idea(article, classifications[article.id], scores[article.id])
         for article in articles
     ]
-    return sorted(ideas, key=lambda idea: idea.total_score, reverse=True)
+    return sorted(ideas, key=lambda idea: idea.final_score or 0, reverse=True)
+
+
+def _idea_id_for(category: str, topic: str) -> str:
+    slug = "-".join(
+        word.strip(".,:;!?").lower()
+        for word in topic.split()
+        if word.strip(".,:;!?")
+    )
+    return f"{category}::{slug}"
+
+
+def _recommendation_for(final_score: int) -> str:
+    if final_score >= 70:
+        return "post"
+    if final_score >= 50:
+        return "park"
+    return "reject"
 
 
 def _topic_for(article: Article, category: str) -> str:

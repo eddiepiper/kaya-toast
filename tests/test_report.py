@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from kaya_toast.cli import main, run_pipeline
 from kaya_toast.report import generate_report
 from kaya_toast.models import ContentIdea
@@ -25,6 +27,9 @@ def test_report_file_is_created(tmp_path: Path):
 
     assert path.exists()
     assert "## Top LinkedIn Content Ideas" in path.read_text(encoding="utf-8")
+    assert "## Preference Memory" in path.read_text(encoding="utf-8")
+    assert "Preference Adjustment:" in path.read_text(encoding="utf-8")
+    assert "Final Score:" in path.read_text(encoding="utf-8")
 
 
 def test_cli_run_works(tmp_path: Path, monkeypatch):
@@ -35,6 +40,11 @@ def test_cli_run_works(tmp_path: Path, monkeypatch):
 
     assert result == 0
     assert list((tmp_path / "reports").glob("*-kaya-toast.md"))
+
+
+def test_cli_invalid_feedback_rating_rejected():
+    with pytest.raises(SystemExit):
+        main(["feedback", "--idea-id", "IDEA001", "--rating", "amazing"])
 
 
 def test_run_pipeline_returns_report_path(tmp_path: Path, monkeypatch):
