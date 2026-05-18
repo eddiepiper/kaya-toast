@@ -44,6 +44,13 @@ def build_parser() -> argparse.ArgumentParser:
     interpret_parser = subparsers.add_parser("interpret", help="Interpret a deterministic report")
     interpret_parser.add_argument("--input", required=True, help="Path to daily report")
 
+    draft_parser = subparsers.add_parser("draft", help="Create LinkedIn draft Markdown")
+    draft_selection = draft_parser.add_mutually_exclusive_group(required=True)
+    draft_selection.add_argument("--idea-id", help="Idea ID to draft")
+    draft_selection.add_argument("--top", type=int, help="Draft top N post ideas")
+    draft_parser.add_argument("--report", required=True, help="Path to source report")
+    draft_parser.add_argument("--force", action="store_true", help="Allow drafting non-post ideas")
+
     return parser
 
 
@@ -111,6 +118,22 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "weekly":
         report_path = run_weekly()
         print(f"Weekly report written: {report_path}")
+        return 0
+
+    if args.command == "draft":
+        from kaya_toast.draft import draft_from_report
+
+        draft_paths = draft_from_report(
+            args.report,
+            idea_id=args.idea_id,
+            top=args.top,
+            force=args.force,
+        )
+        if not draft_paths:
+            print("No drafts created. Idea may be rejected or not found; use --force to override.")
+            return 1
+        for draft_path in draft_paths:
+            print(f"Draft written: {draft_path}")
         return 0
 
     parser.print_help()
