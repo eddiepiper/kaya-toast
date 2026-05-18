@@ -22,5 +22,23 @@
     "notes": "",
     "rating": "strong_angle",
     "timestamp": "2026-05-18T12:53:28.022703+00:00"
+  },
+  {
+    "idea_id": "enterprise_ai_operating_models::stakeholders-and-the-product-model",
+    "notes": "",
+    "rating": "like",
+    "timestamp": "2026-05-18T15:44:29.536370+00:00"
+  },
+  {
+    "idea_id": "ai_pm_skills::structured-prompt-driven-development-(spdd)",
+    "notes": "",
+    "rating": "use_later",
+    "timestamp": "2026-05-18T15:44:29.536372+00:00"
+  },
+  {
+    "idea_id": "ai_native_pm_mindset::\ud83e\udde0-community-wisdom-what-to-do-when-non-pms-start-shipping-directly-to-production-thoughts-on-claude-code\u2019s-pricing-a/b-test-the-use-of-gen-ai-in-games-and-more",
+    "notes": "",
+    "rating": "too_generic",
+    "timestamp": "2026-05-18T15:44:29.536376+00:00"
   }
 ]

@@ -40,5 +40,13 @@
     "run_id": "daily-20260518154106",
     "timestamp": "2026-05-18T15:41:06.119158+00:00",
     "warnings": []
+  },
+  {
+    "articles_collected": 125,
+    "ideas_generated": 93,
+    "report_path": "/Users/edwardchiang/Documents/AI PM news agent/kaya-toast/reports/daily/2026-05-18-kaya-toast.md",
+    "run_id": "daily-20260518154547",
+    "timestamp": "2026-05-18T15:45:47.664037+00:00",
+    "warnings": []
   }
 ]
