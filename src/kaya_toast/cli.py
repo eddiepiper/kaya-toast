@@ -46,6 +46,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Content pillar filter",
     )
     subparsers.add_parser("weekly", help="Generate weekly strategy brief")
+    subparsers.add_parser("strategy", help="Generate deterministic strategy brief")
 
     interpret_parser = subparsers.add_parser("interpret", help="Interpret a deterministic report")
     interpret_parser.add_argument("--input", required=True, help="Path to daily report")
@@ -124,6 +125,13 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "weekly":
         report_path = run_weekly()
         print(f"Weekly report written: {report_path}")
+        return 0
+
+    if args.command == "strategy":
+        from kaya_toast.intelligence import generate_strategy_report
+
+        report_path = generate_strategy_report()
+        print(f"Strategy report written: {report_path}")
         return 0
 
     if args.command == "draft":
