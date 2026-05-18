@@ -161,3 +161,95 @@ def test_parked_but_promising_section_is_rendered():
 
     assert "## Parked But Promising" in report
     assert "Product discovery with AI needs stronger customer evidence" in report
+
+
+def test_duplicate_idea_ids_are_removed_from_recommendations():
+    articles = [
+        _source_article(
+            "Product Talk",
+            "AI-native PM workflow governance for product managers",
+            "Product managers design, validate, review, and orchestrate AI workflow decisions.",
+        ),
+        _source_article(
+            "Product Talk",
+            "AI-native PM workflow governance for product managers",
+            "Product managers design, validate, review, and orchestrate AI workflow decisions.",
+        ),
+    ]
+    classifications = {article.id: classify_article(article) for article in articles}
+    scores = {article.id: score_article(article, classifications[article.id]) for article in articles}
+
+    ideas = recommend_articles(articles, classifications, scores)
+
+    assert len([idea for idea in ideas if idea.idea_id == ideas[0].idea_id]) == 1
+
+
+def test_fallback_topic_appears_at_most_once():
+    articles = [
+        _source_article(
+            "AWS Machine Learning Blog",
+            "AI workflow update",
+            "Product managers use AI workflow strategy to design, validate, and review decisions.",
+        ),
+        _source_article(
+            "Microsoft AI Blog",
+            "AI product workflow update",
+            "Product managers use AI workflow strategy to design, validate, and review decisions.",
+        ),
+    ]
+    classifications = {article.id: classify_article(article) for article in articles}
+    scores = {article.id: score_article(article, classifications[article.id]) for article in articles}
+
+    ideas = recommend_articles(articles, classifications, scores)
+
+    assert sum(idea.topic == "AI-native PMs are not faster PRD writers" for idea in ideas) <= 1
+
+
+def test_strong_source_title_is_preferred_over_fallback_topic():
+    article = _source_article(
+        "Product Talk",
+        "Product discovery with AI needs stronger customer evidence",
+        "Product managers use AI to validate and review product discovery decisions.",
+    )
+    classification = classify_article(article)
+    idea = build_content_idea(article, classification, score_article(article, classification))
+
+    assert idea.topic == "Product discovery with AI needs stronger customer evidence"
+
+
+def test_prompt_bro_positioning_warning_caps_recommendation_at_park():
+    article = _article(
+        "Structured-Prompt-Driven Development (SPDD)",
+        "Product managers can use prompt architecture to design, validate, review, and orchestrate AI workflows.",
+    )
+    classification = classify_article(article)
+    idea = build_content_idea(article, classification, score_article(article, classification))
+
+    assert idea.positioning_warning == "Sounds like prompt-bro content"
+    assert idea.recommendation == "park"
+
+
+def test_hooks_vary_by_category():
+    agentic = _source_article(
+        "OpenAI News",
+        "Agentic workflow controls for product managers",
+        "Product managers design, validate, review, and orchestrate agentic workflow controls.",
+    )
+    discovery = _source_article(
+        "Product Talk",
+        "Product discovery with AI needs stronger customer evidence",
+        "Product managers validate and review product discovery decisions with AI.",
+    )
+    agentic_idea = build_content_idea(
+        agentic,
+        classify_article(agentic),
+        score_article(agentic, classify_article(agentic)),
+    )
+    discovery_idea = build_content_idea(
+        discovery,
+        classify_article(discovery),
+        score_article(discovery, classify_article(discovery)),
+    )
+
+    assert agentic_idea.hook_options != discovery_idea.hook_options
+    assert "Agentic workflows still need product judgment." in agentic_idea.hook_options

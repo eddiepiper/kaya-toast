@@ -8,6 +8,12 @@ from kaya_toast.preference import calculate_preference_adjustment
 from kaya_toast.quality import assess_title_quality, assess_topic_quality, is_high_quality_title, source_quality_boost
 
 
+FALLBACK_TOPICS = {
+    "AI-native PMs are not faster PRD writers",
+    "AI governance is product work, not only policy work",
+    "Enterprise AI needs workflow redesign before tool rollout",
+}
+
 CATEGORY_ANGLES = {
     "ai_native_pm_mindset": "Challenge the misconception that AI-native PM is only about productivity.",
     "ai_pm_skills": "Show which PM skills compound when AI becomes part of the operating model.",
@@ -65,6 +71,12 @@ def build_content_idea(
         recommendation = "reject"
     elif quality_warnings and recommendation == "post":
         recommendation = "park"
+    recommendation = _apply_positioning_cap(
+        recommendation,
+        positioning_warning=positioning_warning,
+        positioning_score=positioning_score,
+        quality_score=quality_score,
+    )
     return ContentIdea(
         idea_id=idea_id,
         topic=topic,
@@ -106,7 +118,45 @@ def recommend_articles(
         build_content_idea(article, classifications[article.id], scores[article.id])
         for article in articles
     ]
-    return sorted(ideas, key=lambda idea: idea.final_score or 0, reverse=True)
+    return dedupe_content_ideas(sorted(ideas, key=lambda idea: idea.final_score or 0, reverse=True))
+
+
+def dedupe_content_ideas(ideas: list[ContentIdea]) -> list[ContentIdea]:
+    selected: dict[str, ContentIdea] = {}
+    order: list[str] = []
+    fallback_seen: set[str] = set()
+
+    for idea in sorted(ideas, key=lambda item: item.final_score or 0, reverse=True):
+        topic_key = _normalize_topic(idea.topic)
+        if idea.topic in FALLBACK_TOPICS:
+            if idea.topic in fallback_seen:
+                continue
+            fallback_seen.add(idea.topic)
+        keys = [f"id:{idea.idea_id}", f"topic:{topic_key}"]
+        existing_key = next((key for key in keys if key in selected), None)
+        if existing_key is None:
+            primary_key = keys[0]
+            selected[primary_key] = idea
+            selected[keys[1]] = idea
+            order.append(primary_key)
+            continue
+
+        existing = selected[existing_key]
+        if (idea.final_score or 0) > (existing.final_score or 0):
+            primary_key = next(key for key in order if selected[key] == existing)
+            selected[primary_key] = idea
+            selected[keys[0]] = idea
+            selected[keys[1]] = idea
+
+    deduped: list[ContentIdea] = []
+    seen_ids: set[str] = set()
+    for key in order:
+        idea = selected[key]
+        if id(idea) in seen_ids:
+            continue
+        seen_ids.add(id(idea))
+        deduped.append(idea)
+    return deduped
 
 
 def _idea_id_for(category: str, topic: str) -> str:
@@ -127,7 +177,25 @@ def _recommendation_for(final_score: int, high_quality: bool = False) -> str:
     return "reject"
 
 
+def _apply_positioning_cap(
+    recommendation: str,
+    positioning_warning: str | None,
+    positioning_score: int,
+    quality_score: int,
+) -> str:
+    capped_warnings = {"Sounds like prompt-bro content", "Too generic", "Weak positioning fit"}
+    if (
+        recommendation == "post"
+        and positioning_warning in capped_warnings
+        and not (positioning_score >= 40 and quality_score >= 80)
+    ):
+        return "park"
+    return recommendation
+
+
 def _topic_for(article: Article, category: str) -> str:
+    if is_high_quality_title(article.title):
+        return article.title.rstrip(".")
     if category == "ai_native_pm_mindset":
         return "AI-native PMs are not faster PRD writers"
     if category == "context_engineering":
@@ -167,11 +235,34 @@ def _target_audience(category: str) -> str:
 
 
 def _hooks_for(category: str) -> list[str]:
-    common = [
-        "AI-native PM is not about writing PRDs faster.",
-        "The next PM skill is not prompting. It is orchestration.",
-        "Traditional PMs manage backlogs. AI-native PMs design decision loops.",
-    ]
+    hooks_by_category = {
+        "ai_native_pm_mindset": [
+            "AI-native PM is not about writing PRDs faster.",
+            "The PM role is shifting from managing outputs to designing decision loops.",
+        ],
+        "agentic_workflows": [
+            "Agentic workflows still need product judgment.",
+            "The hard part of agentic workflows is not automation. It is control.",
+        ],
+        "ai_prototyping": [
+            "AI prototyping is not just faster UI work.",
+            "The real value of AI prototyping is faster product judgment.",
+        ],
+        "product_discovery_with_ai": [
+            "AI can speed up discovery, but it cannot replace evidence quality.",
+            "Discovery gets faster with AI only if PMs protect the signal.",
+        ],
+        "enterprise_ai_operating_models": [
+            "Enterprise AI fails when tools arrive before workflows change.",
+            "AI transformation is not a tooling rollout. It is an operating model redesign.",
+        ],
+        "ai_governance": [
+            "AI governance is product work when decisions affect customers.",
+            "Guardrails are not paperwork. They are part of the user journey.",
+        ],
+    }
+    if category in hooks_by_category:
+        return hooks_by_category[category]
     if category == "context_engineering":
         return [
             "Context engineering may become the most underrated PM skill.",
@@ -184,4 +275,11 @@ def _hooks_for(category: str) -> list[str]:
             "Controls are not bureaucracy when AI is making workflow decisions.",
             "The PM role in AI governance is designing the review loop.",
         ]
-    return common
+    return [
+        "The next PM skill is not prompting. It is orchestration.",
+        "Traditional PMs manage backlogs. AI-native PMs design decision loops.",
+    ]
+
+
+def _normalize_topic(topic: str) -> str:
+    return "".join(character for character in topic.lower() if character.isalnum())

@@ -5,6 +5,7 @@ from pathlib import Path
 
 from kaya_toast.models import ContentIdea
 from kaya_toast.preference import summarize_feedback
+from kaya_toast.recommend import dedupe_content_ideas
 
 
 def generate_report(
@@ -20,6 +21,7 @@ def generate_report(
 
 
 def render_report(ideas: list[ContentIdea], source_summary: dict | None = None) -> str:
+    ideas = dedupe_content_ideas(ideas)
     post_ideas = [idea for idea in ideas if idea.recommendation == "post"]
     parked_ideas = [idea for idea in ideas if idea.recommendation == "park"]
     rejected_ideas = [idea for idea in ideas if idea.recommendation == "reject"]
@@ -55,21 +57,18 @@ def render_report(ideas: list[ContentIdea], source_summary: dict | None = None) 
         "## Top LinkedIn Content Ideas",
         "",
         _render_ideas(post_ideas[:10]),
-        "## Parked Ideas",
-        "",
-        _render_ideas(parked_ideas[:15]),
         "## Parked But Promising",
         "",
         _render_ideas(promising_parked),
         "## Rejected Ideas",
         "",
-        _render_ideas(rejected_ideas[:15]),
+        _render_ideas(rejected_ideas[:5]),
         "## Fluff Warnings",
         "",
-        _render_fluff(fluff_warnings[:20]),
+        _render_fluff(fluff_warnings[:10]),
         "## Quality Warnings",
         "",
-        _render_quality_warnings(quality_warnings[:25]),
+        _render_quality_warnings(quality_warnings[:10]),
     ]
     return "\n".join(sections).rstrip() + "\n"
 

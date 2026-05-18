@@ -6,5 +6,39 @@
     "run_id": "daily-20260518131249",
     "timestamp": "2026-05-18T13:12:49.002770+00:00",
     "warnings": []
+  },
+  {
+    "articles_collected": 1,
+    "ideas_generated": 1,
+    "report_path": "/Users/edwardchiang/Documents/AI PM news agent/kaya-toast/reports/daily/2026-05-18-kaya-toast.md",
+    "run_id": "daily-20260518153903",
+    "timestamp": "2026-05-18T15:39:03.614971+00:00",
+    "warnings": [
+      "Product Talk: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "SVPG Articles: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "Lenny's Newsletter: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "Google AI Blog: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "Microsoft AI Blog: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "AWS Machine Learning Blog: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "Martin Fowler: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "OpenAI News: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "RSS collection returned no articles; used fallback /Users/edwardchiang/Documents/AI PM news agent/kaya-toast/data/latest_rss_articles.json"
+    ]
+  },
+  {
+    "articles_collected": 125,
+    "ideas_generated": 93,
+    "report_path": "/Users/edwardchiang/Documents/AI PM news agent/kaya-toast/reports/daily/2026-05-18-kaya-toast.md",
+    "run_id": "daily-20260518153956",
+    "timestamp": "2026-05-18T15:39:56.180563+00:00",
+    "warnings": []
+  },
+  {
+    "articles_collected": 125,
+    "ideas_generated": 93,
+    "report_path": "/Users/edwardchiang/Documents/AI PM news agent/kaya-toast/reports/daily/2026-05-18-kaya-toast.md",
+    "run_id": "daily-20260518154106",
+    "timestamp": "2026-05-18T15:41:06.119158+00:00",
+    "warnings": []
   }
 ]
