@@ -54,6 +54,9 @@ class ContentIdea:
     secondary_pillar: str | None = None
     pillar_confidence: float = 0.0
     pillar_score: int = 0
+    positioning_fit_score: int = 0
+    positioning_warning: str | None = None
+    memory_recommendation: str = "No memory signal yet"
 
     def __post_init__(self) -> None:
         if self.final_score is None:

@@ -51,7 +51,9 @@
 - Credibility fit: 15
 - Fluff risk: 20
 - Career positioning value: 20
-- Total: 100
+- Positioning fit: 45
+- Memory-informed recommendation: Memory-aligned
+- Total: 145
 
 ### Fragments: May 14
 - Audience usefulness: 22
@@ -59,7 +61,9 @@
 - Credibility fit: 15
 - Fluff risk: 20
 - Career positioning value: 20
-- Total: 97
+- Positioning fit: 45
+- Memory-informed recommendation: Memory-aligned
+- Total: 142
 
 ### Fragments: May 5
 - Audience usefulness: 22
@@ -67,15 +71,9 @@
 - Credibility fit: 15
 - Fluff risk: 20
 - Career positioning value: 20
-- Total: 97
-
-### Fragments: April 14
-- Audience usefulness: 22
-- Differentiation: 20
-- Credibility fit: 15
-- Fluff risk: 20
-- Career positioning value: 20
-- Total: 97
+- Positioning fit: 45
+- Memory-informed recommendation: Memory-aligned
+- Total: 142
 
 ### Fragments: April 29
 - Audience usefulness: 18
@@ -83,7 +81,19 @@
 - Credibility fit: 15
 - Fluff risk: 20
 - Career positioning value: 20
-- Total: 93
+- Positioning fit: 45
+- Memory-informed recommendation: Memory-aligned
+- Total: 138
+
+### Fragments: April 21
+- Audience usefulness: 18
+- Differentiation: 20
+- Credibility fit: 15
+- Fluff risk: 20
+- Career positioning value: 20
+- Positioning fit: 45
+- Memory-informed recommendation: Memory-aligned
+- Total: 138
 
 ## Topics to Avoid
 
@@ -101,5 +111,5 @@
 - Fragments: April 9
 - Fragments: May 14
 - Fragments: May 5
-- Fragments: April 14
 - Fragments: April 29
+- Fragments: April 21

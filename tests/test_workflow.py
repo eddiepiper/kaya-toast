@@ -54,6 +54,8 @@ def test_weekly_command_creates_weekly_report_from_sample_daily_reports(tmp_path
                 "- Suggested angle: Challenge productivity-only AI adoption.",
                 "  - AI-native PM is not about writing PRDs faster.",
                 "- Preference Adjustment: +10",
+                "- Positioning fit: 45",
+                "- Memory-informed recommendation: Memory-aligned",
                 "- Final Score: 90",
                 "## Fluff Warnings",
                 "- prompt list content: fluff risk 95, recommendation reject",
@@ -73,6 +75,8 @@ def test_weekly_command_creates_weekly_report_from_sample_daily_reports(tmp_path
     assert "Monday: strategic AI-native PM shift" in text
     assert "- Score: 90" in text
     assert "  - Hook options:" not in text
+    assert "- Positioning fit: 45" in text
+    assert "- Memory-informed recommendation: Memory-aligned" in text
 
 
 def test_rss_fallback_works_from_latest_rss_articles(tmp_path: Path, monkeypatch):

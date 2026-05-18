@@ -164,8 +164,10 @@ def _content_bets(ideas: list[dict[str, Any]]) -> list[dict[str, Any]]:
             "credibility_fit": 20 if "enterprise" in str(idea.get("suggested_angle", "")).lower() else 15,
             "fluff_risk": max(0, 20 - fluff_score // 5),
             "career_positioning_value": 20 if final_score >= 70 else 12,
+            "positioning_fit": int(str(idea.get("positioning_fit", "0")) or "0"),
+            "memory_recommendation": str(idea.get("memory-informed_recommendation", "Not captured")),
         }
-        bet["total"] = sum(value for key, value in bet.items() if key != "topic")
+        bet["total"] = sum(value for key, value in bet.items() if isinstance(value, int))
         bets.append(bet)
     return sorted(bets, key=lambda item: item["total"], reverse=True)
 
@@ -192,6 +194,8 @@ def _render_bets(bets: list[dict[str, Any]]) -> str:
                     f"- Credibility fit: {bet['credibility_fit']}",
                     f"- Fluff risk: {bet['fluff_risk']}",
                     f"- Career positioning value: {bet['career_positioning_value']}",
+                    f"- Positioning fit: {bet['positioning_fit']}",
+                    f"- Memory-informed recommendation: {bet['memory_recommendation']}",
                     f"- Total: {bet['total']}",
                     "",
                 ]

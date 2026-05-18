@@ -1,0 +1,33 @@
+{
+  "content_ideas_parked": [
+    "IDEA002"
+  ],
+  "content_ideas_used": [
+    "IDEA001",
+    "IDEA003"
+  ],
+  "disliked_styles": [
+    "generic"
+  ],
+  "preferred_angles": [
+    "IDEA001",
+    "IDEA003"
+  ],
+  "recurring_liked_themes": [
+    "IDEA001",
+    "IDEA003"
+  ],
+  "recurring_rejected_themes": [
+    "IDEA002"
+  ],
+  "repeated_audience_focus": [
+    "traditional PMs",
+    "enterprise PMs",
+    "AI-native PM transition"
+  ],
+  "strongest_positioning_phrases": [
+    "AI-native PM practitioner",
+    "enterprise AI operator",
+    "practical AI workflow builder"
+  ]
+}

@@ -47,6 +47,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     subparsers.add_parser("weekly", help="Generate weekly strategy brief")
     subparsers.add_parser("strategy", help="Generate deterministic strategy brief")
+    memory_parser = subparsers.add_parser("memory", help="Show or update thinking memory")
+    memory_parser.add_argument("--update-from-feedback", action="store_true", help="Update memory from feedback")
 
     interpret_parser = subparsers.add_parser("interpret", help="Interpret a deterministic report")
     interpret_parser.add_argument("--input", required=True, help="Path to daily report")
@@ -132,6 +134,17 @@ def main(argv: list[str] | None = None) -> int:
 
         report_path = generate_strategy_report()
         print(f"Strategy report written: {report_path}")
+        return 0
+
+    if args.command == "memory":
+        from kaya_toast.memory import summarize_memory, update_memory_from_feedback
+
+        if args.update_from_feedback:
+            memory = update_memory_from_feedback()
+            print("Thinking memory updated from feedback.")
+            print(summarize_memory(memory))
+        else:
+            print(summarize_memory())
         return 0
 
     if args.command == "draft":

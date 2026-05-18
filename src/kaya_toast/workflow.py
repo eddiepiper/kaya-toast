@@ -182,40 +182,39 @@ def _extract_ideas_from_reports(paths: list[Path]) -> list[dict]:
     ideas: list[dict] = []
     for path in paths:
         current: dict[str, str | list[str]] | None = None
+        collecting_hooks = False
         for line in path.read_text(encoding="utf-8").splitlines():
             if line.startswith("### "):
                 if current:
                     ideas.append(current)
                 current = {"topic": line.removeprefix("### ").strip(), "hooks": []}
+                collecting_hooks = False
             elif current is not None and line.startswith("- Category: "):
                 current["category"] = line.removeprefix("- Category: ").strip()
+                collecting_hooks = False
             elif current is not None and line.startswith("- Why it matters: "):
                 current["why"] = line.removeprefix("- Why it matters: ").strip()
+                collecting_hooks = False
             elif current is not None and line.startswith("- Suggested angle: "):
                 current["angle"] = line.removeprefix("- Suggested angle: ").strip()
+                collecting_hooks = False
+            elif current is not None and line.startswith("- Hook options:"):
+                collecting_hooks = True
             elif current is not None and line.startswith("- Final Score: "):
                 current["score"] = line.removeprefix("- Final Score: ").strip()
+                collecting_hooks = False
             elif current is not None and line.startswith("- Preference Adjustment: "):
                 current["preference"] = line.removeprefix("- Preference Adjustment: ").strip()
-            elif current is not None and line.strip().startswith("- ") and "hooks" in current:
-                hook = line.strip().removeprefix("- ").strip()
-                if hook and not hook.startswith(
-                    (
-                        "Hook options:",
-                        "Topic:",
-                        "Category:",
-                        "Source:",
-                        "Why",
-                        "Target",
-                        "Suggested",
-                        "Score:",
-                        "Fluff",
-                        "Recommendation",
-                        "Idea ID",
-                        "Preference",
-                        "Final",
-                    )
-                ):
+                collecting_hooks = False
+            elif current is not None and line.startswith("- Positioning fit: "):
+                current["positioning_fit"] = line.removeprefix("- Positioning fit: ").strip()
+                collecting_hooks = False
+            elif current is not None and line.startswith("- Memory-informed recommendation: "):
+                current["memory_recommendation"] = line.removeprefix("- Memory-informed recommendation: ").strip()
+                collecting_hooks = False
+            elif current is not None and collecting_hooks and line.startswith("  - "):
+                hook = line.removeprefix("  - ").strip()
+                if hook:
                     current["hooks"].append(hook)
         if current:
             ideas.append(current)
@@ -242,6 +241,8 @@ def _render_weekly_ideas(ideas: list[dict]) -> str:
                     hook_lines,
                     f"- Score: {idea.get('score', '0')}",
                     f"- Preference match: {idea.get('preference', '0')}",
+                    f"- Positioning fit: {idea.get('positioning_fit', 'Not captured')}",
+                    f"- Memory-informed recommendation: {idea.get('memory_recommendation', 'Not captured')}",
                     "",
                 ]
             )

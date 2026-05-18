@@ -12,8 +12,10 @@
   - AI-native PM is not about writing PRDs faster.
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
-- Score: 95
+- Score: 110
 - Preference match: 0
+- Positioning fit: 45
+- Memory-informed recommendation: Memory-aligned
 
 ### Fragments: May 14
 
@@ -25,8 +27,10 @@
   - AI-native PM is not about writing PRDs faster.
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
-- Score: 75
+- Score: 90
 - Preference match: 0
+- Positioning fit: 45
+- Memory-informed recommendation: Memory-aligned
 
 ### Fragments: May 5
 
@@ -38,8 +42,10 @@
   - AI-native PM is not about writing PRDs faster.
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
-- Score: 75
+- Score: 90
 - Preference match: 0
+- Positioning fit: 45
+- Memory-informed recommendation: Memory-aligned
 
 ## Emerging Themes
 
@@ -53,9 +59,9 @@
 
 - AI-native PMs are not faster PRD writers
 - AI-native PMs are not faster PRD writers
-- Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom
 - AI-native PMs are not faster PRD writers
-- The internal AI tool that’s transforming how Stripe designs products | Owen Williams
+- Taste - All Things Product Podcast with Teresa Torres & Petra Wille
+- AI can speed discovery only when PMs protect evidence quality
 
 ## Fluff Patterns Detected
 

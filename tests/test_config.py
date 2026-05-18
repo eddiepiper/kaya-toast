@@ -11,6 +11,7 @@ def test_config_loads_expected_sections():
     assert "sources" in config
     assert "llm" in config
     assert "pillars" in config
+    assert "positioning" in config
     assert "ai_native_pm_mindset" in config["taxonomy"]["categories"]
     assert config["scoring"]["thresholds"]["post"] == 70
 
