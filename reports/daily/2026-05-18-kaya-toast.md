@@ -16,11 +16,11 @@
 
 ## AI-native PM Ideas
 
+- Enterprise AI needs workflow redesign before tool rollout (post, final score 75)
 - Structured-Prompt-Driven Development (SPDD) (post, final score 75)
-- Enterprise AI needs workflow redesign before tool rollout (park, final score 65)
-- AI-native PMs are not faster PRD writers (park, final score 50)
-- Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom (park, final score 50)
-- AI-native PMs are not faster PRD writers (park, final score 50)
+- AI-native PMs are not faster PRD writers (park, final score 60)
+- Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom (park, final score 58)
+- AI-native PMs are not faster PRD writers (park, final score 58)
 
 ## AI-native Banking Ideas
 
@@ -32,19 +32,49 @@
 
 ## Founder Systems Ideas
 
-- AI-native PMs are not faster PRD writers (park, final score 50)
-- AI-native PMs are not faster PRD writers (reject, final score 41)
-- AI-native PMs are not faster PRD writers (reject, final score 35)
-- Fragments: April 9 (reject, final score 25)
-- AI-native PMs are not faster PRD writers (reject, final score 15)
+- AI-native PMs are not faster PRD writers (park, final score 60)
+- AI-native PMs are not faster PRD writers (park, final score 51)
+- AI-native PMs are not faster PRD writers (reject, final score 45)
+- AI-native PMs are not faster PRD writers (reject, final score 25)
+- AI-native PMs are not faster PRD writers (reject, final score 25)
 
 ## Healthcare / Caregiver AI Ideas
 
 - Bliki: Mythical Man Month (reject, final score 40)
-- AI-native PMs are not faster PRD writers (reject, final score 15)
+- AI-native PMs are not faster PRD writers (reject, final score 25)
 - Fragments: April 29 (reject, final score 0)
 
 ## Top LinkedIn Content Ideas
+
+### Enterprise AI needs workflow redesign before tool rollout
+
+- Idea ID: enterprise_ai_operating_models::enterprise-ai-needs-workflow-redesign-before-tool-rollout
+- Topic: Enterprise AI needs workflow redesign before tool rollout
+- Category: enterprise_ai_operating_models
+- Primary pillar: ai_native_pm
+- Secondary pillar: None
+- Pillar confidence: 0.75
+- Pillar score: +15
+- Positioning fit: 45
+- Positioning warning: Good AI-native PM transition angle
+- Memory-informed recommendation: Memory-aligned
+- Quality score: 100
+- Source quality boost: +10
+- Quality Warnings:
+  - None
+- Source: SVPG Articles: Stakeholders and the Product Model
+- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
+- Target audience: Enterprise PMs and product leaders adopting AI in regulated environments.
+- Suggested angle: Connect enterprise AI strategy to PM workflow and decision design.
+- Hook options:
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 50
+- Preference Adjustment: 0
+- Final Score: 75
+- Fluff risk: 0
+- Recommendation: post
 
 ### Structured-Prompt-Driven Development (SPDD)
 
@@ -59,6 +89,7 @@
 - Positioning warning: Sounds like prompt-bro content
 - Memory-informed recommendation: Review positioning before using
 - Quality score: 100
+- Source quality boost: +0
 - Quality Warnings:
   - None
 - Source: Martin Fowler: Structured-Prompt-Driven Development (SPDD)
@@ -77,35 +108,6 @@
 
 ## Parked Ideas
 
-### Enterprise AI needs workflow redesign before tool rollout
-
-- Idea ID: enterprise_ai_operating_models::enterprise-ai-needs-workflow-redesign-before-tool-rollout
-- Topic: Enterprise AI needs workflow redesign before tool rollout
-- Category: enterprise_ai_operating_models
-- Primary pillar: ai_native_pm
-- Secondary pillar: None
-- Pillar confidence: 0.75
-- Pillar score: +15
-- Positioning fit: 45
-- Positioning warning: Good AI-native PM transition angle
-- Memory-informed recommendation: Memory-aligned
-- Quality score: 100
-- Quality Warnings:
-  - None
-- Source: SVPG Articles: Stakeholders and the Product Model
-- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
-- Target audience: Enterprise PMs and product leaders adopting AI in regulated environments.
-- Suggested angle: Connect enterprise AI strategy to PM workflow and decision design.
-- Hook options:
-  - AI-native PM is not about writing PRDs faster.
-  - The next PM skill is not prompting. It is orchestration.
-  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
-- Score: 50
-- Preference Adjustment: 0
-- Final Score: 65
-- Fluff risk: 0
-- Recommendation: park
-
 ### AI-native PMs are not faster PRD writers
 
 - Idea ID: ai_native_pm_mindset::ai-native-pms-are-not-faster-prd-writers
@@ -119,6 +121,7 @@
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +10
 - Quality Warnings:
   - None
 - Source: Product Talk: Product Roadmaps: How the Best Product Teams Plan for Uncertainty
@@ -131,7 +134,7 @@
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 35
 - Preference Adjustment: 0
-- Final Score: 50
+- Final Score: 60
 - Fluff risk: 0
 - Recommendation: park
 
@@ -148,6 +151,7 @@
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +8
 - Quality Warnings:
   - None
 - Source: Lenny's Newsletter: Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom
@@ -160,7 +164,7 @@
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 35
 - Preference Adjustment: 0
-- Final Score: 50
+- Final Score: 58
 - Fluff risk: 20
 - Recommendation: park
 
@@ -177,6 +181,7 @@
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +8
 - Quality Warnings:
   - None
 - Source: Lenny's Newsletter: 🎙️ This week on How I AI: The internal AI tool that’s transforming how Stripe designs products
@@ -189,7 +194,7 @@
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 35
 - Preference Adjustment: 0
-- Final Score: 50
+- Final Score: 58
 - Fluff risk: 0
 - Recommendation: park
 
@@ -206,6 +211,7 @@
 - Positioning warning: Strong enterprise operator fit
 - Memory-informed recommendation: Review positioning before using
 - Quality score: 100
+- Source quality boost: +8
 - Quality Warnings:
   - None
 - Source: Lenny's Newsletter: The internal AI tool that’s transforming how Stripe designs products | Owen Williams
@@ -218,7 +224,7 @@
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 35
 - Preference Adjustment: 0
-- Final Score: 50
+- Final Score: 58
 - Fluff risk: 0
 - Recommendation: park
 
@@ -235,6 +241,7 @@
 - Positioning warning: Strong enterprise operator fit
 - Memory-informed recommendation: Review positioning before using
 - Quality score: 100
+- Source quality boost: +8
 - Quality Warnings:
   - None
 - Source: Lenny's Newsletter: Why cultivating agency matters more than cultivating skills in the AI era | Max Schoening (Head of Product, Notion)
@@ -247,11 +254,9 @@
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 35
 - Preference Adjustment: 0
-- Final Score: 50
+- Final Score: 58
 - Fluff risk: 0
 - Recommendation: park
-
-## Rejected Ideas
 
 ### AI-native PMs are not faster PRD writers
 
@@ -266,6 +271,7 @@
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +10
 - Quality Warnings:
   - None
 - Source: Product Talk: Building Banani: How a Canvas-First AI Designer Is Raising the Floor on Product Design
@@ -278,38 +284,11 @@
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 35
 - Preference Adjustment: 0
-- Final Score: 41
+- Final Score: 51
 - Fluff risk: 0
-- Recommendation: reject
+- Recommendation: park
 
-### Bliki: Mythical Man Month
-
-- Idea ID: ai_pm_skills::bliki-mythical-man-month
-- Topic: Bliki: Mythical Man Month
-- Category: ai_pm_skills
-- Primary pillar: ai_native_pm
-- Secondary pillar: healthcare_caregiver_ai
-- Pillar confidence: 0.25
-- Pillar score: +15
-- Positioning fit: 25
-- Positioning warning: Strong enterprise operator fit
-- Memory-informed recommendation: Review positioning before using
-- Quality score: 70
-- Quality Warnings:
-  - no clear PM content angle
-- Source: Martin Fowler: Bliki: Mythical Man Month
-- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
-- Target audience: Traditional PMs transitioning into AI PM roles.
-- Suggested angle: Show which PM skills compound when AI becomes part of the operating model.
-- Hook options:
-  - AI-native PM is not about writing PRDs faster.
-  - The next PM skill is not prompting. It is orchestration.
-  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
-- Score: 25
-- Preference Adjustment: 0
-- Final Score: 40
-- Fluff risk: 0
-- Recommendation: reject
+## Parked But Promising
 
 ### AI-native PMs are not faster PRD writers
 
@@ -324,6 +303,159 @@
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +10
+- Quality Warnings:
+  - None
+- Source: Product Talk: Product Roadmaps: How the Best Product Teams Plan for Uncertainty
+- Why it matters: Traditional PMs often use AI to speed up documentation. The bigger shift is using AI to improve discovery, validation, prioritization, and workflow orchestration.
+- Target audience: Traditional PMs transitioning into AI PM roles.
+- Suggested angle: Challenge the misconception that AI-native PM is only about productivity.
+- Hook options:
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 35
+- Preference Adjustment: 0
+- Final Score: 60
+- Fluff risk: 0
+- Recommendation: park
+
+### Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom
+
+- Idea ID: agentic_workflows::spec-driven-development-the-ai-engineering-workflow-at-notion-|-ryan-nystrom
+- Topic: Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom
+- Category: agentic_workflows
+- Primary pillar: ai_native_pm
+- Secondary pillar: None
+- Pillar confidence: 0.5
+- Pillar score: +15
+- Positioning fit: 45
+- Positioning warning: Good AI-native PM transition angle
+- Memory-informed recommendation: Memory-aligned
+- Quality score: 100
+- Source quality boost: +8
+- Quality Warnings:
+  - None
+- Source: Lenny's Newsletter: Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom
+- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
+- Target audience: Traditional PMs transitioning into AI PM roles.
+- Suggested angle: Explain where agentic workflows need PM-designed guardrails and review loops.
+- Hook options:
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 35
+- Preference Adjustment: 0
+- Final Score: 58
+- Fluff risk: 20
+- Recommendation: park
+
+### AI-native PMs are not faster PRD writers
+
+- Idea ID: ai_native_pm_mindset::ai-native-pms-are-not-faster-prd-writers
+- Topic: AI-native PMs are not faster PRD writers
+- Category: ai_native_pm_mindset
+- Primary pillar: ai_native_pm
+- Secondary pillar: None
+- Pillar confidence: 0.75
+- Pillar score: +15
+- Positioning fit: 45
+- Positioning warning: Good AI-native PM transition angle
+- Memory-informed recommendation: Memory-aligned
+- Quality score: 100
+- Source quality boost: +8
+- Quality Warnings:
+  - None
+- Source: Lenny's Newsletter: 🎙️ This week on How I AI: The internal AI tool that’s transforming how Stripe designs products
+- Why it matters: Traditional PMs often use AI to speed up documentation. The bigger shift is using AI to improve discovery, validation, prioritization, and workflow orchestration.
+- Target audience: Traditional PMs transitioning into AI PM roles.
+- Suggested angle: Challenge the misconception that AI-native PM is only about productivity.
+- Hook options:
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 35
+- Preference Adjustment: 0
+- Final Score: 58
+- Fluff risk: 0
+- Recommendation: park
+
+### The internal AI tool that’s transforming how Stripe designs products | Owen Williams
+
+- Idea ID: ai_prototyping::the-internal-ai-tool-that’s-transforming-how-stripe-designs-products-|-owen-williams
+- Topic: The internal AI tool that’s transforming how Stripe designs products | Owen Williams
+- Category: ai_prototyping
+- Primary pillar: ai_native_pm
+- Secondary pillar: None
+- Pillar confidence: 0.25
+- Pillar score: +15
+- Positioning fit: 25
+- Positioning warning: Strong enterprise operator fit
+- Memory-informed recommendation: Review positioning before using
+- Quality score: 100
+- Source quality boost: +8
+- Quality Warnings:
+  - None
+- Source: Lenny's Newsletter: The internal AI tool that’s transforming how Stripe designs products | Owen Williams
+- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
+- Target audience: Traditional PMs transitioning into AI PM roles.
+- Suggested angle: Position prototyping as a faster way to test product judgment, not just UI output.
+- Hook options:
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 35
+- Preference Adjustment: 0
+- Final Score: 58
+- Fluff risk: 0
+- Recommendation: park
+
+### Why cultivating agency matters more than cultivating skills in the AI era | Max Schoening (Head of Product, Notion)
+
+- Idea ID: ai_pm_skills::why-cultivating-agency-matters-more-than-cultivating-skills-in-the-ai-era-|-max-schoening-(head-of-product-notion)
+- Topic: Why cultivating agency matters more than cultivating skills in the AI era | Max Schoening (Head of Product, Notion)
+- Category: ai_pm_skills
+- Primary pillar: ai_native_pm
+- Secondary pillar: None
+- Pillar confidence: 0.25
+- Pillar score: +15
+- Positioning fit: 25
+- Positioning warning: Strong enterprise operator fit
+- Memory-informed recommendation: Review positioning before using
+- Quality score: 100
+- Source quality boost: +8
+- Quality Warnings:
+  - None
+- Source: Lenny's Newsletter: Why cultivating agency matters more than cultivating skills in the AI era | Max Schoening (Head of Product, Notion)
+- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
+- Target audience: Traditional PMs transitioning into AI PM roles.
+- Suggested angle: Show which PM skills compound when AI becomes part of the operating model.
+- Hook options:
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 35
+- Preference Adjustment: 0
+- Final Score: 58
+- Fluff risk: 0
+- Recommendation: park
+
+## Rejected Ideas
+
+### AI-native PMs are not faster PRD writers
+
+- Idea ID: ai_native_pm_mindset::ai-native-pms-are-not-faster-prd-writers
+- Topic: AI-native PMs are not faster PRD writers
+- Category: ai_native_pm_mindset
+- Primary pillar: ai_native_pm
+- Secondary pillar: founder_systems
+- Pillar confidence: 1.0
+- Pillar score: +15
+- Positioning fit: 45
+- Positioning warning: Good AI-native PM transition angle
+- Memory-informed recommendation: Memory-aligned
+- Quality score: 100
+- Source quality boost: +10
 - Quality Warnings:
   - None
 - Source: Product Talk: Behind the Scenes: Building AI-Generated Opportunity Solution Trees
@@ -336,7 +468,7 @@
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 20
 - Preference Adjustment: 0
-- Final Score: 35
+- Final Score: 45
 - Fluff risk: 0
 - Recommendation: reject
 
@@ -353,6 +485,7 @@
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +10
 - Quality Warnings:
   - None
 - Source: Product Talk: Product Builder Myth - All Things Product Podcast with Teresa Torres & Petra Wille
@@ -365,7 +498,7 @@
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 20
 - Preference Adjustment: 0
-- Final Score: 35
+- Final Score: 45
 - Fluff risk: 0
 - Recommendation: reject
 
@@ -382,6 +515,7 @@
 - Positioning warning: Strong enterprise operator fit
 - Memory-informed recommendation: Review positioning before using
 - Quality score: 100
+- Source quality boost: +10
 - Quality Warnings:
   - None
 - Source: Product Talk: Taste - All Things Product Podcast with Teresa Torres & Petra Wille
@@ -394,7 +528,7 @@
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 20
 - Preference Adjustment: 0
-- Final Score: 35
+- Final Score: 45
 - Fluff risk: 0
 - Recommendation: reject
 
@@ -411,6 +545,7 @@
 - Positioning warning: Strong enterprise operator fit
 - Memory-informed recommendation: Review positioning before using
 - Quality score: 100
+- Source quality boost: +10
 - Quality Warnings:
   - None
 - Source: SVPG Articles: Prototypes vs Products
@@ -423,36 +558,7 @@
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
 - Score: 20
 - Preference Adjustment: 0
-- Final Score: 35
-- Fluff risk: 0
-- Recommendation: reject
-
-### The Purpose of Prototypes
-
-- Idea ID: ai_prototyping::the-purpose-of-prototypes
-- Topic: The Purpose of Prototypes
-- Category: ai_prototyping
-- Primary pillar: ai_native_pm
-- Secondary pillar: None
-- Pillar confidence: 0.5
-- Pillar score: +15
-- Positioning fit: 25
-- Positioning warning: Strong enterprise operator fit
-- Memory-informed recommendation: Review positioning before using
-- Quality score: 100
-- Quality Warnings:
-  - None
-- Source: SVPG Articles: The Purpose of Prototypes
-- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
-- Target audience: Traditional PMs transitioning into AI PM roles.
-- Suggested angle: Position prototyping as a faster way to test product judgment, not just UI output.
-- Hook options:
-  - AI-native PM is not about writing PRDs faster.
-  - The next PM skill is not prompting. It is orchestration.
-  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
-- Score: 20
-- Preference Adjustment: 0
-- Final Score: 35
+- Final Score: 45
 - Fluff risk: 0
 - Recommendation: reject
 
@@ -469,12 +575,73 @@
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +8
 - Quality Warnings:
   - None
 - Source: Lenny's Newsletter: 🧠 Community Wisdom: What to do when non-PMs start shipping directly to production, thoughts on Claude Code’s pricing A/B test, the use of gen AI in games, and more
 - Why it matters: Traditional PMs often use AI to speed up documentation. The bigger shift is using AI to improve discovery, validation, prioritization, and workflow orchestration.
 - Target audience: Traditional PMs transitioning into AI PM roles.
 - Suggested angle: Challenge the misconception that AI-native PM is only about productivity.
+- Hook options:
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 20
+- Preference Adjustment: 0
+- Final Score: 43
+- Fluff risk: 0
+- Recommendation: reject
+
+### Bliki: Mythical Man Month
+
+- Idea ID: ai_pm_skills::bliki-mythical-man-month
+- Topic: Bliki: Mythical Man Month
+- Category: ai_pm_skills
+- Primary pillar: ai_native_pm
+- Secondary pillar: healthcare_caregiver_ai
+- Pillar confidence: 0.25
+- Pillar score: +15
+- Positioning fit: 25
+- Positioning warning: Strong enterprise operator fit
+- Memory-informed recommendation: Review positioning before using
+- Quality score: 70
+- Source quality boost: +0
+- Quality Warnings:
+  - no clear PM content angle
+- Source: Martin Fowler: Bliki: Mythical Man Month
+- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
+- Target audience: Traditional PMs transitioning into AI PM roles.
+- Suggested angle: Show which PM skills compound when AI becomes part of the operating model.
+- Hook options:
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 25
+- Preference Adjustment: 0
+- Final Score: 40
+- Fluff risk: 0
+- Recommendation: reject
+
+### The Purpose of Prototypes
+
+- Idea ID: ai_prototyping::the-purpose-of-prototypes
+- Topic: The Purpose of Prototypes
+- Category: ai_prototyping
+- Primary pillar: ai_native_pm
+- Secondary pillar: None
+- Pillar confidence: 0.5
+- Pillar score: +15
+- Positioning fit: 25
+- Positioning warning: Strong enterprise operator fit
+- Memory-informed recommendation: Review positioning before using
+- Quality score: 100
+- Source quality boost: +0
+- Quality Warnings:
+  - None
+- Source: SVPG Articles: The Purpose of Prototypes
+- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
+- Target audience: Traditional PMs transitioning into AI PM roles.
+- Suggested angle: Position prototyping as a faster way to test product judgment, not just UI output.
 - Hook options:
   - AI-native PM is not about writing PRDs faster.
   - The next PM skill is not prompting. It is orchestration.
@@ -498,6 +665,7 @@
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +0
 - Quality Warnings:
   - None
 - Source: AWS Machine Learning Blog: Real-time voice agents with Stream Vision Agents and Amazon Nova 2 Sonic
@@ -527,6 +695,7 @@
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +0
 - Quality Warnings:
   - None
 - Source: OpenAI News: Sea's View on the Future of Agentic Software Development with Codex
@@ -543,35 +712,94 @@
 - Fluff risk: 20
 - Recommendation: reject
 
-### Fragments: April 9
+### AI-native PMs are not faster PRD writers
 
-- Idea ID: agentic_workflows::fragments-april-9
-- Topic: Fragments: April 9
-- Category: agentic_workflows
+- Idea ID: ai_native_pm_mindset::ai-native-pms-are-not-faster-prd-writers
+- Topic: AI-native PMs are not faster PRD writers
+- Category: ai_native_pm_mindset
 - Primary pillar: ai_native_pm
 - Secondary pillar: founder_systems
-- Pillar confidence: 0.5
+- Pillar confidence: 0.75
 - Pillar score: +15
 - Positioning fit: 45
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
-- Quality score: 0
+- Quality score: 100
+- Source quality boost: +10
 - Quality Warnings:
-  - generic fragment title
-  - no clear PM content angle
-  - duplicate weak topic
-- Source: Martin Fowler: Fragments: April 9
-- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
+  - None
+- Source: Product Talk: Building Rhea's Factory: How AI-Designed Enzymes Could Finally Solve Plastic Recycling
+- Why it matters: Traditional PMs often use AI to speed up documentation. The bigger shift is using AI to improve discovery, validation, prioritization, and workflow orchestration.
 - Target audience: Traditional PMs transitioning into AI PM roles.
-- Suggested angle: Explain where agentic workflows need PM-designed guardrails and review loops.
+- Suggested angle: Challenge the misconception that AI-native PM is only about productivity.
 - Hook options:
   - AI-native PM is not about writing PRDs faster.
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
-- Score: 30
+- Score: 0
+- Preference Adjustment: 0
+- Final Score: 25
+- Fluff risk: 30
+- Recommendation: reject
+
+### AI can speed discovery only when PMs protect evidence quality
+
+- Idea ID: product_discovery_with_ai::ai-can-speed-discovery-only-when-pms-protect-evidence-quality
+- Topic: AI can speed discovery only when PMs protect evidence quality
+- Category: product_discovery_with_ai
+- Primary pillar: ai_native_pm
+- Secondary pillar: None
+- Pillar confidence: 0.5
+- Pillar score: +15
+- Positioning fit: 25
+- Positioning warning: Strong enterprise operator fit
+- Memory-informed recommendation: Review positioning before using
+- Quality score: 100
+- Source quality boost: +10
+- Quality Warnings:
+  - None
+- Source: Product Talk: Let's Read Continuous Discovery Habits Together (May 2026)
+- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
+- Target audience: Traditional PMs transitioning into AI PM roles.
+- Suggested angle: Show how AI changes discovery loops without replacing customer evidence.
+- Hook options:
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 0
 - Preference Adjustment: 0
 - Final Score: 25
 - Fluff risk: 0
+- Recommendation: reject
+
+### AI-native PMs are not faster PRD writers
+
+- Idea ID: ai_native_pm_mindset::ai-native-pms-are-not-faster-prd-writers
+- Topic: AI-native PMs are not faster PRD writers
+- Category: ai_native_pm_mindset
+- Primary pillar: ai_native_pm
+- Secondary pillar: founder_systems
+- Pillar confidence: 0.75
+- Pillar score: +15
+- Positioning fit: 45
+- Positioning warning: Good AI-native PM transition angle
+- Memory-informed recommendation: Memory-aligned
+- Quality score: 100
+- Source quality boost: +10
+- Quality Warnings:
+  - None
+- Source: Product Talk: Building AI Employees for Hospitality: How AITropos Takes Orders Where Customers Already Are
+- Why it matters: Traditional PMs often use AI to speed up documentation. The bigger shift is using AI to improve discovery, validation, prioritization, and workflow orchestration.
+- Target audience: Traditional PMs transitioning into AI PM roles.
+- Suggested angle: Challenge the misconception that AI-native PM is only about productivity.
+- Hook options:
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 0
+- Preference Adjustment: 0
+- Final Score: 25
+- Fluff risk: 50
 - Recommendation: reject
 
 ### AI-native PMs are not faster PRD writers
@@ -587,9 +815,10 @@
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +10
 - Quality Warnings:
   - None
-- Source: OpenAI News: AutoScout24 scales engineering with AI-powered workflows
+- Source: Product Talk: Command and Control - All Things Product Podcast with Teresa Torres & Petra Wille
 - Why it matters: Traditional PMs often use AI to speed up documentation. The bigger shift is using AI to improve discovery, validation, prioritization, and workflow orchestration.
 - Target audience: Traditional PMs transitioning into AI PM roles.
 - Suggested angle: Challenge the misconception that AI-native PM is only about productivity.
@@ -597,97 +826,70 @@
   - AI-native PM is not about writing PRDs faster.
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
-- Score: 10
+- Score: 0
 - Preference Adjustment: 0
 - Final Score: 25
 - Fluff risk: 20
 - Recommendation: reject
 
-### How enterprises are scaling AI
+### AI-native PMs are not faster PRD writers
 
-- Idea ID: ai_prototyping::how-enterprises-are-scaling-ai
-- Topic: How enterprises are scaling AI
-- Category: ai_prototyping
+- Idea ID: ai_native_pm_mindset::ai-native-pms-are-not-faster-prd-writers
+- Topic: AI-native PMs are not faster PRD writers
+- Category: ai_native_pm_mindset
 - Primary pillar: ai_native_pm
 - Secondary pillar: None
-- Pillar confidence: 0.5
+- Pillar confidence: 0.75
 - Pillar score: +15
 - Positioning fit: 45
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +10
 - Quality Warnings:
   - None
-- Source: OpenAI News: How enterprises are scaling AI
-- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
+- Source: Product Talk: Predicting the Future - All Things Product Podcast with Teresa Torres & Petra Wille
+- Why it matters: Traditional PMs often use AI to speed up documentation. The bigger shift is using AI to improve discovery, validation, prioritization, and workflow orchestration.
 - Target audience: Traditional PMs transitioning into AI PM roles.
-- Suggested angle: Position prototyping as a faster way to test product judgment, not just UI output.
+- Suggested angle: Challenge the misconception that AI-native PM is only about productivity.
 - Hook options:
   - AI-native PM is not about writing PRDs faster.
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
-- Score: 10
+- Score: 0
 - Preference Adjustment: 0
 - Final Score: 25
-- Fluff risk: 30
+- Fluff risk: 20
 - Recommendation: reject
 
-### AI governance is product work, not only policy work
+### AI-native PMs are not faster PRD writers
 
-- Idea ID: ai_governance::ai-governance-is-product-work-not-only-policy-work
-- Topic: AI governance is product work, not only policy work
-- Category: ai_governance
-- Primary pillar: ai_native_banking
-- Secondary pillar: ai_native_pm
-- Pillar confidence: 1.0
-- Pillar score: +8
-- Positioning fit: 45
-- Positioning warning: Good AI-native PM transition angle
-- Memory-informed recommendation: Memory-aligned
-- Quality score: 100
-- Quality Warnings:
-  - None
-- Source: AWS Machine Learning Blog: Securing AI agents: How AWS and Cisco AI Defense scale MCP and A2A deployments
-- Why it matters: Enterprise PMs need to design controls, auditability, and escalation into AI-enabled workflows.
-- Target audience: Enterprise PMs and product leaders adopting AI in regulated environments.
-- Suggested angle: Translate AI governance into practical product operating discipline.
-- Hook options:
-  - AI governance becomes real when it changes product workflows.
-  - Controls are not bureaucracy when AI is making workflow decisions.
-  - The PM role in AI governance is designing the review loop.
-- Score: 10
-- Preference Adjustment: 0
-- Final Score: 18
-- Fluff risk: 30
-- Recommendation: reject
-
-### AI governance is product work, not only policy work
-
-- Idea ID: ai_governance::ai-governance-is-product-work-not-only-policy-work
-- Topic: AI governance is product work, not only policy work
-- Category: ai_governance
-- Primary pillar: ai_native_banking
-- Secondary pillar: ai_native_pm
+- Idea ID: ai_native_pm_mindset::ai-native-pms-are-not-faster-prd-writers
+- Topic: AI-native PMs are not faster PRD writers
+- Category: ai_native_pm_mindset
+- Primary pillar: ai_native_pm
+- Secondary pillar: founder_systems
 - Pillar confidence: 0.75
-- Pillar score: +8
+- Pillar score: +15
 - Positioning fit: 45
 - Positioning warning: Good AI-native PM transition angle
 - Memory-informed recommendation: Memory-aligned
 - Quality score: 100
+- Source quality boost: +10
 - Quality Warnings:
   - None
-- Source: AWS Machine Learning Blog: Fine-tune LLM with Databricks Unity Catalog and Amazon SageMaker AI
-- Why it matters: Enterprise PMs need to design controls, auditability, and escalation into AI-enabled workflows.
-- Target audience: Enterprise PMs and product leaders adopting AI in regulated environments.
-- Suggested angle: Translate AI governance into practical product operating discipline.
+- Source: Product Talk: Building Todoist Ramble: How Doist Turned Voice Braindumps into Real-Time Task Capture
+- Why it matters: Traditional PMs often use AI to speed up documentation. The bigger shift is using AI to improve discovery, validation, prioritization, and workflow orchestration.
+- Target audience: Traditional PMs transitioning into AI PM roles.
+- Suggested angle: Challenge the misconception that AI-native PM is only about productivity.
 - Hook options:
-  - AI governance becomes real when it changes product workflows.
-  - Controls are not bureaucracy when AI is making workflow decisions.
-  - The PM role in AI governance is designing the review loop.
-- Score: 10
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 0
 - Preference Adjustment: 0
-- Final Score: 18
-- Fluff risk: 30
+- Final Score: 25
+- Fluff risk: 50
 - Recommendation: reject
 
 ## Fluff Warnings
@@ -702,13 +904,13 @@
 - AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
 - AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
 - AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
-- AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
-- AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
 - Join the new AI Agents Vibe Coding Course from Google and Kaggle: fluff risk 50, recommendation reject
 - AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
 - AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
-- We're launching two specialized TPUs for the agentic era: fluff risk 50, recommendation reject
 - AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
+- AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
+- AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
+- We're launching two specialized TPUs for the agentic era: fluff risk 50, recommendation reject
 - AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
 - AI-native PMs are not faster PRD writers: fluff risk 50, recommendation reject
 - AI-native PMs are not faster PRD writers: fluff risk 75, recommendation reject

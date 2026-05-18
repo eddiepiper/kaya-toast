@@ -2,6 +2,21 @@
 
 ## Best 3 LinkedIn Ideas This Week
 
+### Enterprise AI needs workflow redesign before tool rollout
+
+- Topic: Enterprise AI needs workflow redesign before tool rollout
+- Category: enterprise_ai_operating_models
+- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
+- Suggested angle: Connect enterprise AI strategy to PM workflow and decision design.
+- Hook options:
+  - AI-native PM is not about writing PRDs faster.
+  - The next PM skill is not prompting. It is orchestration.
+  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
+- Score: 75
+- Preference match: 0
+- Positioning fit: 45
+- Memory-informed recommendation: Memory-aligned
+
 ### Structured-Prompt-Driven Development (SPDD)
 
 - Topic: Structured-Prompt-Driven Development (SPDD)
@@ -17,21 +32,6 @@
 - Positioning fit: 0
 - Memory-informed recommendation: Review positioning before using
 
-### Enterprise AI needs workflow redesign before tool rollout
-
-- Topic: Enterprise AI needs workflow redesign before tool rollout
-- Category: enterprise_ai_operating_models
-- Why it matters: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
-- Suggested angle: Connect enterprise AI strategy to PM workflow and decision design.
-- Hook options:
-  - AI-native PM is not about writing PRDs faster.
-  - The next PM skill is not prompting. It is orchestration.
-  - Traditional PMs manage backlogs. AI-native PMs design decision loops.
-- Score: 65
-- Preference match: 0
-- Positioning fit: 45
-- Memory-informed recommendation: Memory-aligned
-
 ### AI-native PMs are not faster PRD writers
 
 - Topic: AI-native PMs are not faster PRD writers
@@ -42,26 +42,26 @@
   - AI-native PM is not about writing PRDs faster.
   - The next PM skill is not prompting. It is orchestration.
   - Traditional PMs manage backlogs. AI-native PMs design decision loops.
-- Score: 50
+- Score: 60
 - Preference match: 0
 - Positioning fit: 45
 - Memory-informed recommendation: Memory-aligned
 
 ## Emerging Themes
 
-- ai_native_pm_mindset: 7 ideas
-- ai_pm_skills: 4 ideas
+- ai_native_pm_mindset: 13 ideas
+- ai_pm_skills: 5 ideas
 - agentic_workflows: 4 ideas
 - ai_prototyping: 4 ideas
-- ai_governance: 2 ideas
+- enterprise_ai_operating_models: 1 ideas
 
 ## Topics to Avoid
 
 - AI-native PMs are not faster PRD writers
-- Bliki: Mythical Man Month
-- AI-native PMs are not faster PRD writers
 - AI-native PMs are not faster PRD writers
 - Taste - All Things Product Podcast with Teresa Torres & Petra Wille
+- Prototypes vs Products
+- AI-native PMs are not faster PRD writers
 
 ## Fluff Patterns Detected
 

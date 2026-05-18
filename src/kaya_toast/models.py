@@ -67,6 +67,7 @@ class ContentIdea:
     quality_score: int = 100
     quality_warnings: list[str] = field(default_factory=list)
     quality_reject_reason: str | None = None
+    source_quality_boost: int = 0
 
     def __post_init__(self) -> None:
         if self.final_score is None:

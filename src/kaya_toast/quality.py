@@ -26,6 +26,25 @@ MEANINGFUL_KEYWORDS = [
     "customer",
 ]
 
+HIGH_QUALITY_TITLE_KEYWORDS = [
+    "pm",
+    "product",
+    "ai",
+    "workflow",
+    "enterprise",
+    "governance",
+    "strategy",
+    "discovery",
+    "customer",
+]
+
+PREFERRED_SOURCE_BOOSTS = {
+    "Product Talk": 10,
+    "SVPG Articles": 10,
+    "Lenny's Newsletter": 8,
+    "Google AI Blog": 8,
+}
+
 GENERIC_TITLES = {
     "fragments",
     "links",
@@ -99,6 +118,19 @@ def assess_topic_quality(content_idea: ContentIdea) -> QualityResult:
         warnings=warnings,
         reject_reason=reject_reason,
     )
+
+
+def is_high_quality_title(title: str) -> bool:
+    if is_generic_fragment_title(title) or is_weak_title(title):
+        return False
+    lowered = title.lower()
+    return any(keyword in lowered for keyword in HIGH_QUALITY_TITLE_KEYWORDS)
+
+
+def source_quality_boost(article: Article) -> int:
+    if not is_high_quality_title(article.title):
+        return 0
+    return PREFERRED_SOURCE_BOOSTS.get(article.source, 0)
 
 
 def is_weak_title(title: str) -> bool:

@@ -2,27 +2,26 @@
 
 ## Strongest Emerging Themes
 
-- ai_native_pm_mindset: recurring in 7 ideas
-- ai_pm_skills: recurring in 4 ideas
+- ai_native_pm_mindset: recurring in 13 ideas
+- ai_pm_skills: recurring in 5 ideas
 - agentic_workflows: recurring in 4 ideas
 - ai_prototyping: recurring in 4 ideas
-- ai_governance: recurring in 2 ideas
-- ai_native_pm: pillar signal across 19 ideas
-- ai_native_banking: pillar signal across 2 ideas
+- enterprise_ai_operating_models: recurring in 1 ideas
+- ai_native_pm: pillar signal across 27 ideas
 - founder_systems: pillar signal across 1 ideas
 
 ## Repeated PM Transition Patterns
 
-- Challenge the misconception that AI-native PM is only about productivity.: 7 repeats
-- Show which PM skills compound when AI becomes part of the operating model.: 4 repeats
+- Challenge the misconception that AI-native PM is only about productivity.: 13 repeats
+- Show which PM skills compound when AI becomes part of the operating model.: 5 repeats
 - Explain where agentic workflows need PM-designed guardrails and review loops.: 4 repeats
 - Position prototyping as a faster way to test product judgment, not just UI output.: 4 repeats
-- Translate AI governance into practical product operating discipline.: 2 repeats
+- Connect enterprise AI strategy to PM workflow and decision design.: 1 repeats
 
 ## Contrarian Angles Worth Posting
 
-- Structured-Prompt-Driven Development (SPDD): the PM shift is workflow design, not AI adoption.
 - Enterprise AI needs workflow redesign before tool rollout: the PM shift is workflow design, not AI adoption.
+- Structured-Prompt-Driven Development (SPDD): the PM shift is workflow design, not AI adoption.
 - AI-native PMs are not faster PRD writers: the PM shift is workflow design, not AI adoption.
 - Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom: the PM shift is workflow design, not AI adoption.
 - AI-native PMs are not faster PRD writers: the PM shift is workflow design, not AI adoption.
@@ -46,70 +45,70 @@
 ## Recommended Content Bets
 
 ### Enterprise AI needs workflow redesign before tool rollout
-- Audience usefulness: 16
+- Audience usefulness: 18
 - Differentiation: 20
 - Credibility fit: 20
 - Fluff risk: 20
-- Career positioning value: 12
+- Career positioning value: 20
 - Positioning fit: 45
 - Memory-informed recommendation: Memory-aligned
-- Total: 133
+- Total: 143
 
 ### AI-native PMs are not faster PRD writers
-- Audience usefulness: 12
+- Audience usefulness: 15
 - Differentiation: 20
 - Credibility fit: 15
 - Fluff risk: 20
 - Career positioning value: 12
 - Positioning fit: 45
 - Memory-informed recommendation: Memory-aligned
-- Total: 124
+- Total: 127
+
+### AI-native PMs are not faster PRD writers
+- Audience usefulness: 15
+- Differentiation: 20
+- Credibility fit: 15
+- Fluff risk: 20
+- Career positioning value: 12
+- Positioning fit: 45
+- Memory-informed recommendation: Memory-aligned
+- Total: 127
 
 ### Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom
-- Audience usefulness: 12
+- Audience usefulness: 14
 - Differentiation: 20
 - Credibility fit: 15
 - Fluff risk: 20
 - Career positioning value: 12
 - Positioning fit: 45
 - Memory-informed recommendation: Memory-aligned
-- Total: 124
+- Total: 126
 
 ### AI-native PMs are not faster PRD writers
-- Audience usefulness: 12
+- Audience usefulness: 14
 - Differentiation: 20
 - Credibility fit: 15
 - Fluff risk: 20
 - Career positioning value: 12
 - Positioning fit: 45
 - Memory-informed recommendation: Memory-aligned
-- Total: 124
-
-### AI-native PMs are not faster PRD writers
-- Audience usefulness: 8
-- Differentiation: 20
-- Credibility fit: 15
-- Fluff risk: 20
-- Career positioning value: 12
-- Positioning fit: 45
-- Memory-informed recommendation: Memory-aligned
-- Total: 120
+- Total: 126
 
 ## Topics to Avoid
 
 - AI-native PMs are not faster PRD writers
-- Bliki: Mythical Man Month
-- AI-native PMs are not faster PRD writers
 - AI-native PMs are not faster PRD writers
 - Taste - All Things Product Podcast with Teresa Torres & Petra Wille
 - Prototypes vs Products
-- The Purpose of Prototypes
 - AI-native PMs are not faster PRD writers
+- Bliki: Mythical Man Month
+- The Purpose of Prototypes
+- Real-time voice agents with Stream Vision Agents and Amazon Nova 2 Sonic
 
 ## Suggested Next 5 Posts
 
 - Enterprise AI needs workflow redesign before tool rollout
 - AI-native PMs are not faster PRD writers
-- Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom
 - AI-native PMs are not faster PRD writers
+- Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom
 - AI-native PMs are not faster PRD writers

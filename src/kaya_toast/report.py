@@ -23,6 +23,11 @@ def render_report(ideas: list[ContentIdea], source_summary: dict | None = None) 
     post_ideas = [idea for idea in ideas if idea.recommendation == "post"]
     parked_ideas = [idea for idea in ideas if idea.recommendation == "park"]
     rejected_ideas = [idea for idea in ideas if idea.recommendation == "reject"]
+    promising_parked = [
+        idea
+        for idea in parked_ideas
+        if not idea.quality_reject_reason and (idea.final_score or 0) >= 50
+    ][:5]
     fluff_warnings = [idea for idea in ideas if idea.fluff_score >= 50]
     quality_warnings = [idea for idea in ideas if idea.quality_warnings]
 
@@ -53,6 +58,9 @@ def render_report(ideas: list[ContentIdea], source_summary: dict | None = None) 
         "## Parked Ideas",
         "",
         _render_ideas(parked_ideas[:15]),
+        "## Parked But Promising",
+        "",
+        _render_ideas(promising_parked),
         "## Rejected Ideas",
         "",
         _render_ideas(rejected_ideas[:15]),
@@ -89,6 +97,7 @@ def _render_ideas(ideas: list[ContentIdea]) -> str:
                     f"- Positioning warning: {idea.positioning_warning or 'None'}",
                     f"- Memory-informed recommendation: {idea.memory_recommendation}",
                     f"- Quality score: {idea.quality_score}",
+                    f"- Source quality boost: +{idea.source_quality_boost}",
                     "- Quality Warnings:",
                     _render_quality_warning_lines(idea.quality_warnings),
                     f"- Source: {idea.source}",

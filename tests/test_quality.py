@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from kaya_toast.classify import classify_article
 from kaya_toast.models import Article, ContentIdea
-from kaya_toast.quality import assess_title_quality, assess_topic_quality, is_generic_fragment_title, is_weak_title
+from kaya_toast.quality import assess_title_quality, assess_topic_quality, is_generic_fragment_title, is_high_quality_title, is_weak_title, source_quality_boost
 from kaya_toast.recommend import build_content_idea, recommend_articles
 from kaya_toast.report import render_report
 from kaya_toast.score import score_article
@@ -16,6 +16,16 @@ def _article(title: str, summary: str | None = None) -> Article:
         source="Martin Fowler",
         summary=summary
         or "Product managers can design workflow review loops with AI governance and operational controls.",
+    )
+
+
+def _source_article(source: str, title: str, summary: str) -> Article:
+    return Article(
+        id=title.lower().replace(" ", "-"),
+        title=title,
+        url="https://example.com",
+        source=source,
+        summary=summary,
     )
 
 
@@ -113,3 +123,41 @@ def test_quality_helpers_detect_weak_titles():
             recommendation="reject",
         )
     ).warnings
+
+
+def test_preferred_source_boost_promotes_strong_product_title():
+    article = _source_article(
+        "Product Talk",
+        "Product discovery with AI needs stronger customer evidence",
+        "Product managers validate, review, and prioritize customer discovery workflow decisions with AI.",
+    )
+    classification = classify_article(article)
+    idea = build_content_idea(article, classification, score_article(article, classification))
+
+    assert source_quality_boost(article) == 10
+    assert is_high_quality_title(article.title)
+    assert idea.source_quality_boost == 10
+    assert idea.recommendation == "post"
+
+
+def test_parked_but_promising_section_is_rendered():
+    idea = ContentIdea(
+        idea_id="promising",
+        topic="Product discovery with AI needs stronger customer evidence",
+        source_article_id="a1",
+        category="product_discovery_with_ai",
+        source="Product Talk: Product discovery with AI needs stronger customer evidence",
+        why_it_matters="Evidence quality matters.",
+        target_audience="Traditional PMs",
+        suggested_angle="Show discovery workflow lessons.",
+        hook_options=["AI discovery still needs evidence."],
+        total_score=50,
+        fluff_score=0,
+        recommendation="park",
+        final_score=55,
+    )
+
+    report = render_report([idea])
+
+    assert "## Parked But Promising" in report
+    assert "Product discovery with AI needs stronger customer evidence" in report

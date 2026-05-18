@@ -5,7 +5,7 @@ from kaya_toast.memory import score_positioning
 from kaya_toast.models import Article, ClassificationResult, ContentIdea, ScoreResult
 from kaya_toast.pillars import classify_pillar
 from kaya_toast.preference import calculate_preference_adjustment
-from kaya_toast.quality import assess_title_quality, assess_topic_quality
+from kaya_toast.quality import assess_title_quality, assess_topic_quality, is_high_quality_title, source_quality_boost
 
 
 CATEGORY_ANGLES = {
@@ -55,11 +55,12 @@ def build_content_idea(
     topic_quality = assess_topic_quality(base_idea)
     quality_warnings = list(dict.fromkeys(article_quality.warnings + topic_quality.warnings))
     quality_score = min(article_quality.quality_score, topic_quality.quality_score)
+    boost = source_quality_boost(article)
     quality_penalty = 0
     if "duplicate weak topic" in quality_warnings:
         quality_penalty -= 20
-    final_score = max(0, score.total_score + preference_adjustment + pillar.score + quality_penalty)
-    recommendation = _recommendation_for(final_score)
+    final_score = max(0, score.total_score + preference_adjustment + pillar.score + boost + quality_penalty)
+    recommendation = _recommendation_for(final_score, high_quality=is_high_quality_title(article.title))
     if article_quality.reject_reason or topic_quality.reject_reason:
         recommendation = "reject"
     elif quality_warnings and recommendation == "post":
@@ -92,6 +93,7 @@ def build_content_idea(
         quality_score=quality_score,
         quality_warnings=quality_warnings,
         quality_reject_reason=article_quality.reject_reason or topic_quality.reject_reason,
+        source_quality_boost=boost,
     )
 
 
@@ -116,8 +118,9 @@ def _idea_id_for(category: str, topic: str) -> str:
     return f"{category}::{slug}"
 
 
-def _recommendation_for(final_score: int) -> str:
-    if final_score >= 70:
+def _recommendation_for(final_score: int, high_quality: bool = False) -> str:
+    post_threshold = 65 if high_quality else 70
+    if final_score >= post_threshold:
         return "post"
     if final_score >= 50:
         return "park"
