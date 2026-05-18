@@ -37,8 +37,12 @@ def build_parser() -> argparse.ArgumentParser:
     feedback_parser.add_argument("--notes", default="", help="Optional feedback notes")
 
     subparsers.add_parser("collect-rss", help="Collect configured RSS sources")
-    subparsers.add_parser("daily", help="Run daily RSS workflow")
+    daily_parser = subparsers.add_parser("daily", help="Run daily RSS workflow")
+    daily_parser.add_argument("--interpret", action="store_true", help="Run optional strategic interpretation")
     subparsers.add_parser("weekly", help="Generate weekly strategy brief")
+
+    interpret_parser = subparsers.add_parser("interpret", help="Interpret a deterministic report")
+    interpret_parser.add_argument("--input", required=True, help="Path to daily report")
 
     return parser
 
@@ -87,11 +91,21 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "daily":
         try:
-            report_path = run_daily()
+            report_path = run_daily(interpret=args.interpret)
         except RuntimeError as error:
             print(f"Daily run failed: {error}")
             return 1
         print(f"Daily report written: {report_path}")
+        return 0
+
+    if args.command == "interpret":
+        from kaya_toast.interpret import interpret_report
+
+        result = interpret_report(args.input)
+        if result.warning:
+            print(f"WARNING: {result.warning}")
+        else:
+            print(f"Strategic interpretation written: {result.report_path}")
         return 0
 
     if args.command == "weekly":

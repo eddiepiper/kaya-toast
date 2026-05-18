@@ -35,7 +35,7 @@ def build_ideas(articles: list[Article]) -> list[ContentIdea]:
     return recommend_articles(articles, classifications, scores)
 
 
-def run_daily() -> Path:
+def run_daily(interpret: bool = False) -> Path:
     collection = collect_from_rss_sources(load_sources())
     articles = collection.articles
     warnings = list(collection.warnings)
@@ -72,6 +72,12 @@ def run_daily() -> Path:
         report_path=report_path,
         warnings=warnings,
     )
+    if interpret:
+        from kaya_toast.interpret import interpret_report
+
+        result = interpret_report(report_path)
+        if result.warning:
+            print(f"WARNING: {result.warning}")
     return report_path
 
 

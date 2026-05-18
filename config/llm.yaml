@@ -1,0 +1,5 @@
+provider: openrouter
+model: anthropic/claude-sonnet-4.5
+enabled: false
+temperature: 0.3
+max_tokens: 1200
