@@ -12,6 +12,7 @@ def _sources_config():
                 "name": "Good Source",
                 "type": "rss",
                 "url": "https://example.com/feed.xml",
+                "max_items": 1,
                 "tags": ["ai"],
             },
             {
@@ -29,6 +30,7 @@ def test_sources_yaml_loads():
 
     assert "sources" in sources
     assert any(source["name"] == "OpenAI News" for source in sources["sources"])
+    assert any(source["name"] == "Product Talk" for source in sources["sources"])
 
 
 def test_rss_normalization_works():

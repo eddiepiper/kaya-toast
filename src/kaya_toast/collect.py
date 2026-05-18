@@ -60,7 +60,8 @@ def collect_from_rss_sources(sources_config: dict[str, Any]) -> CollectionResult
 
         try:
             parsed_items = _parse_rss(url)
-            for index, item in enumerate(parsed_items, start=1):
+            max_items = int(source.get("max_items", 25))
+            for index, item in enumerate(parsed_items[:max_items], start=1):
                 article = normalize_rss_item(item, source_name, index)
                 articles.append(article)
                 counts_by_source[source_name] += 1

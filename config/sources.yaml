@@ -1,28 +1,64 @@
 sources:
-  - name: Mind the Product
+  - name: Product Talk
     type: rss
-    url: https://www.mindtheproduct.com/feed/
+    url: https://www.producttalk.org/feed/
+    max_items: 15
+    tags:
+      - product_discovery
+      - product_management
+
+  - name: SVPG Articles
+    type: rss
+    url: https://www.svpg.com/articles/feed/
+    max_items: 15
     tags:
       - product_management
-      - ai_pm
+      - product_leadership
 
-  - name: O'Reilly Radar
+  - name: Lenny's Newsletter
     type: rss
-    url: https://www.oreilly.com/radar/feed/
+    url: https://www.lennysnewsletter.com/feed
+    max_items: 15
+    tags:
+      - product_management
+      - product_growth
+
+  - name: Google AI Blog
+    type: rss
+    url: https://blog.google/technology/ai/rss/
+    max_items: 15
+    tags:
+      - ai
+      - product_ai
+
+  - name: Microsoft AI Blog
+    type: rss
+    url: https://blogs.microsoft.com/ai/feed/
+    max_items: 15
     tags:
       - ai
       - enterprise_ai
 
-  - name: Anthropic News
+  - name: AWS Machine Learning Blog
     type: rss
-    url: https://www.anthropic.com/news/rss.xml
+    url: https://aws.amazon.com/blogs/machine-learning/feed/
+    max_items: 15
     tags:
       - ai
-      - frontier_ai
+      - enterprise_ai
+
+  - name: Martin Fowler
+    type: rss
+    url: https://martinfowler.com/feed.atom
+    max_items: 15
+    tags:
+      - software_delivery
+      - enterprise_ai
 
   - name: OpenAI News
     type: rss
     url: https://openai.com/news/rss.xml
+    max_items: 25
     tags:
       - ai
       - product_ai
