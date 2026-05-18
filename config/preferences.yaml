@@ -1,0 +1,24 @@
+likes:
+  topics: []
+  styles:
+    - practical
+    - strategic
+    - operator_led
+    - enterprise_aware
+  angles:
+    - traditional_pm_to_ai_pm
+    - ai_native_workflows
+    - human_in_loop_systems
+
+dislikes:
+  topics:
+    - generic_ai_tools
+    - prompt_lists
+    - vague_future_of_work
+  styles:
+    - hype
+    - guru_tone
+    - too_technical_without_pm_link
+  angles:
+    - ai_replaces_everything
+    - generic_productivity_hacks

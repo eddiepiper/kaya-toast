@@ -1,0 +1,66 @@
+[
+  {
+    "id": "a1",
+    "title": "AI-native PMs are redesigning decision loops, not just writing PRDs faster",
+    "url": "https://example.com/ai-native-pm-decision-loops",
+    "source": "Product Ops Review",
+    "summary": "Traditional PMs moving into AI PM roles need to design, validate, prioritize, and review AI-supported product decisions. The practical shift is from documentation speed to workflow orchestration and evidence quality.",
+    "published_date": "2026-05-10"
+  },
+  {
+    "id": "a2",
+    "title": "Enterprise AI workflow redesign before tool rollout",
+    "url": "https://example.com/enterprise-ai-workflow-redesign",
+    "source": "Enterprise AI Weekly",
+    "summary": "Enterprise AI programs work when product leaders redesign business process, governance checkpoints, and operating model decisions before scaling tools across teams.",
+    "published_date": "2026-05-11"
+  },
+  {
+    "id": "a3",
+    "title": "Context engineering for product managers",
+    "url": "https://example.com/context-engineering-pm",
+    "source": "AI Product Notes",
+    "summary": "Context engineering, memory, retrieval, and prompt architecture help product managers design better decision support and review loops for AI PM workflows.",
+    "published_date": "2026-05-12"
+  },
+  {
+    "id": "a4",
+    "title": "AI governance controls for product teams",
+    "url": "https://example.com/ai-governance-product",
+    "source": "Risk Product Journal",
+    "summary": "Governance, risk, audit, compliance, and controls become product design concerns when AI workflows need approval, escalation, oversight, and human in the loop review.",
+    "published_date": "2026-05-13"
+  },
+  {
+    "id": "a5",
+    "title": "Top 10 prompts every PM needs to unlock productivity",
+    "url": "https://example.com/top-10-prompts",
+    "source": "Prompt Hacks Daily",
+    "summary": "A list of 10 prompts for product managers who want quick productivity hacks with AI tools.",
+    "published_date": "2026-05-14"
+  },
+  {
+    "id": "a6",
+    "title": "The AI revolution will change everything and transform your life",
+    "url": "https://example.com/ai-revolution",
+    "source": "Future Buzz",
+    "summary": "AI is a game changer that will future-proof your career, unlock productivity, and replace product managers in the future of work.",
+    "published_date": "2026-05-15"
+  },
+  {
+    "id": "a7",
+    "title": "Banking AI transformation needs product-led controls",
+    "url": "https://example.com/banking-ai-controls",
+    "source": "Digital Banking Brief",
+    "summary": "Banking product teams can use enterprise AI to redesign workflow controls, audit trails, compliance review, and customer-impact escalation before deployment.",
+    "published_date": "2026-05-16"
+  },
+  {
+    "id": "a8",
+    "title": "Product discovery with AI still needs customer evidence",
+    "url": "https://example.com/ai-product-discovery",
+    "source": "Discovery Lab",
+    "summary": "AI can support customer research, user interview synthesis, prototype testing, and experiment design, but PMs must validate insights before prioritizing roadmap decisions.",
+    "published_date": "2026-05-17"
+  }
+]

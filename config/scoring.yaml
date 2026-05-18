@@ -1,0 +1,18 @@
+weights:
+  ai_native_pm_relevance: 25
+  pm_transition_value: 20
+  practical_usefulness: 20
+  enterprise_relevance: 15
+  linkedin_potential: 15
+  originality: 15
+
+penalties:
+  fluff_risk: -30
+  generic_ai_hype: -25
+  no_pm_relevance: -40
+  no_operational_detail: -20
+
+thresholds:
+  post: 70
+  park: 50
+  reject: 49
