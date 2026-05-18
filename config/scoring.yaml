@@ -11,6 +11,10 @@ penalties:
   generic_ai_hype: -25
   no_pm_relevance: -40
   no_operational_detail: -20
+  weak_title: -40
+  generic_source_title: -35
+  no_content_angle: -30
+  duplicate_topic: -20
 
 thresholds:
   post: 70

@@ -24,6 +24,7 @@ def render_report(ideas: list[ContentIdea], source_summary: dict | None = None) 
     parked_ideas = [idea for idea in ideas if idea.recommendation == "park"]
     rejected_ideas = [idea for idea in ideas if idea.recommendation == "reject"]
     fluff_warnings = [idea for idea in ideas if idea.fluff_score >= 50]
+    quality_warnings = [idea for idea in ideas if idea.quality_warnings]
 
     sections = [
         "# kaya-toast Daily Brief",
@@ -48,16 +49,19 @@ def render_report(ideas: list[ContentIdea], source_summary: dict | None = None) 
         _render_pillar_ideas(ideas, "healthcare_caregiver_ai"),
         "## Top LinkedIn Content Ideas",
         "",
-        _render_ideas(post_ideas),
+        _render_ideas(post_ideas[:10]),
         "## Parked Ideas",
         "",
-        _render_ideas(parked_ideas),
+        _render_ideas(parked_ideas[:15]),
         "## Rejected Ideas",
         "",
-        _render_ideas(rejected_ideas),
+        _render_ideas(rejected_ideas[:15]),
         "## Fluff Warnings",
         "",
-        _render_fluff(fluff_warnings),
+        _render_fluff(fluff_warnings[:20]),
+        "## Quality Warnings",
+        "",
+        _render_quality_warnings(quality_warnings[:25]),
     ]
     return "\n".join(sections).rstrip() + "\n"
 
@@ -84,6 +88,9 @@ def _render_ideas(ideas: list[ContentIdea]) -> str:
                     f"- Positioning fit: {idea.positioning_fit_score}",
                     f"- Positioning warning: {idea.positioning_warning or 'None'}",
                     f"- Memory-informed recommendation: {idea.memory_recommendation}",
+                    f"- Quality score: {idea.quality_score}",
+                    "- Quality Warnings:",
+                    _render_quality_warning_lines(idea.quality_warnings),
                     f"- Source: {idea.source}",
                     f"- Why it matters: {idea.why_it_matters}",
                     f"- Target audience: {idea.target_audience}",
@@ -183,4 +190,19 @@ def _render_pillar_ideas(ideas: list[ContentIdea], pillar: str) -> str:
     return "\n".join(
         f"- {idea.topic} ({idea.recommendation}, final score {idea.final_score})"
         for idea in matching
+    ) + "\n"
+
+
+def _render_quality_warning_lines(warnings: list[str]) -> str:
+    if not warnings:
+        return "  - None"
+    return "\n".join(f"  - {warning}" for warning in warnings)
+
+
+def _render_quality_warnings(ideas: list[ContentIdea]) -> str:
+    if not ideas:
+        return "None.\n"
+    return "\n".join(
+        f"- {idea.topic}: {', '.join(idea.quality_warnings)}; recommendation {idea.recommendation}"
+        for idea in ideas
     ) + "\n"

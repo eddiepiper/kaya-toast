@@ -3,6 +3,7 @@ from __future__ import annotations
 from kaya_toast.config import load_scoring
 from kaya_toast.fluff import OPERATIONAL_WORDS, fluff_check
 from kaya_toast.models import Article, ClassificationResult, ScoreResult
+from kaya_toast.quality import assess_title_quality
 
 
 PM_TERMS = ["pm", "product", "product manager", "product management", "roadmap"]
@@ -52,6 +53,7 @@ def score_article(
     thresholds = config["thresholds"]
     text = f"{article.title} {article.summary}".lower()
     fluff = fluff_check(article)
+    quality = assess_title_quality(article)
 
     positive_scores = {
         "ai_native_pm_relevance": weights["ai_native_pm_relevance"]
@@ -81,6 +83,12 @@ def score_article(
         penalties["no_pm_relevance"] = penalty_weights["no_pm_relevance"]
     if not _has_any(text, OPERATIONAL_WORDS):
         penalties["no_operational_detail"] = penalty_weights["no_operational_detail"]
+    if "weak source title" in quality.warnings:
+        penalties["weak_title"] = penalty_weights["weak_title"]
+    if "generic fragment title" in quality.warnings or "too generic" in quality.warnings:
+        penalties["generic_source_title"] = penalty_weights["generic_source_title"]
+    if "no clear PM content angle" in quality.warnings:
+        penalties["no_content_angle"] = penalty_weights["no_content_angle"]
 
     total_score = max(0, sum(positive_scores.values()) + sum(penalties.values()))
     if total_score >= thresholds["post"]:

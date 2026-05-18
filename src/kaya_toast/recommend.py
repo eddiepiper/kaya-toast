@@ -5,6 +5,7 @@ from kaya_toast.memory import score_positioning
 from kaya_toast.models import Article, ClassificationResult, ContentIdea, ScoreResult
 from kaya_toast.pillars import classify_pillar
 from kaya_toast.preference import calculate_preference_adjustment
+from kaya_toast.quality import assess_title_quality, assess_topic_quality
 
 
 CATEGORY_ANGLES = {
@@ -50,7 +51,19 @@ def build_content_idea(
     preference_adjustment = calculate_preference_adjustment(base_idea)
     pillar = classify_pillar(article=article, idea=base_idea)
     positioning_score, positioning_warning, memory_recommendation = score_positioning(base_idea)
-    final_score = max(0, score.total_score + preference_adjustment + pillar.score)
+    article_quality = assess_title_quality(article)
+    topic_quality = assess_topic_quality(base_idea)
+    quality_warnings = list(dict.fromkeys(article_quality.warnings + topic_quality.warnings))
+    quality_score = min(article_quality.quality_score, topic_quality.quality_score)
+    quality_penalty = 0
+    if "duplicate weak topic" in quality_warnings:
+        quality_penalty -= 20
+    final_score = max(0, score.total_score + preference_adjustment + pillar.score + quality_penalty)
+    recommendation = _recommendation_for(final_score)
+    if article_quality.reject_reason or topic_quality.reject_reason:
+        recommendation = "reject"
+    elif quality_warnings and recommendation == "post":
+        recommendation = "park"
     return ContentIdea(
         idea_id=idea_id,
         topic=topic,
@@ -66,7 +79,7 @@ def build_content_idea(
         hook_options=_hooks_for(classification.category),
         total_score=score.total_score,
         fluff_score=fluff.fluff_score,
-        recommendation=_recommendation_for(final_score),
+        recommendation=recommendation,
         preference_adjustment=preference_adjustment,
         final_score=final_score,
         primary_pillar=pillar.primary_pillar,
@@ -76,6 +89,9 @@ def build_content_idea(
         positioning_fit_score=positioning_score,
         positioning_warning=positioning_warning,
         memory_recommendation=memory_recommendation,
+        quality_score=quality_score,
+        quality_warnings=quality_warnings,
+        quality_reject_reason=article_quality.reject_reason or topic_quality.reject_reason,
     )
 
 

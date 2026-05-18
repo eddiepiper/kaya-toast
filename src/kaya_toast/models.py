@@ -35,6 +35,13 @@ class FluffResult:
 
 
 @dataclass(frozen=True)
+class QualityResult:
+    quality_score: int
+    warnings: list[str] = field(default_factory=list)
+    reject_reason: str | None = None
+
+
+@dataclass(frozen=True)
 class ContentIdea:
     idea_id: str
     topic: str
@@ -57,6 +64,9 @@ class ContentIdea:
     positioning_fit_score: int = 0
     positioning_warning: str | None = None
     memory_recommendation: str = "No memory signal yet"
+    quality_score: int = 100
+    quality_warnings: list[str] = field(default_factory=list)
+    quality_reject_reason: str | None = None
 
     def __post_init__(self) -> None:
         if self.final_score is None:
