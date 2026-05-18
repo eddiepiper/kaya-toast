@@ -10,6 +10,7 @@ from kaya_toast.preference import SUPPORTED_RATINGS, add_feedback
 from kaya_toast.recommend import recommend_articles
 from kaya_toast.report import generate_report
 from kaya_toast.score import score_article
+from kaya_toast.workflow import run_daily, run_weekly
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -36,6 +37,8 @@ def build_parser() -> argparse.ArgumentParser:
     feedback_parser.add_argument("--notes", default="", help="Optional feedback notes")
 
     subparsers.add_parser("collect-rss", help="Collect configured RSS sources")
+    subparsers.add_parser("daily", help="Run daily RSS workflow")
+    subparsers.add_parser("weekly", help="Generate weekly strategy brief")
 
     return parser
 
@@ -80,6 +83,20 @@ def main(argv: list[str] | None = None) -> int:
         for warning in result.warnings:
             print(f"WARNING: {warning}")
         print(f"Saved RSS articles: {output_path}")
+        return 0
+
+    if args.command == "daily":
+        try:
+            report_path = run_daily()
+        except RuntimeError as error:
+            print(f"Daily run failed: {error}")
+            return 1
+        print(f"Daily report written: {report_path}")
+        return 0
+
+    if args.command == "weekly":
+        report_path = run_weekly()
+        print(f"Weekly report written: {report_path}")
         return 0
 
     parser.print_help()
