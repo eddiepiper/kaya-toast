@@ -1,4 +1,5 @@
 import json
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import pytest
@@ -94,3 +95,42 @@ def test_summarize_feedback_counts_liked_and_rejected_categories(tmp_path: Path)
     assert summary["total_records"] == 2
     assert summary["most_liked_categories"] == ["context_engineering"]
     assert summary["most_rejected_categories"] == ["ai_native_pm_mindset"]
+
+
+def test_concurrent_feedback_writes_do_not_corrupt_file(tmp_path: Path):
+    feedback_path = tmp_path / "feedback.json"
+
+    def write(index: int):
+        return add_feedback(f"idea::{index}", "like", path=feedback_path)
+
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        list(executor.map(write, range(25)))
+
+    records = load_feedback(feedback_path)
+    assert len(records) == 25
+    assert json.loads(feedback_path.read_text(encoding="utf-8"))
+    assert (tmp_path / "feedback.backup.json").exists()
+
+
+def test_corrupted_feedback_recovers_from_backup(tmp_path: Path):
+    feedback_path = tmp_path / "feedback.json"
+    backup_path = tmp_path / "feedback.backup.json"
+    backup_path.write_text(
+        json.dumps(
+            [
+                {
+                    "idea_id": "idea::1",
+                    "rating": "like",
+                    "timestamp": "2026-05-18T00:00:00+00:00",
+                    "notes": "",
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    feedback_path.write_text("{broken", encoding="utf-8")
+
+    records = load_feedback(feedback_path)
+
+    assert records[0]["idea_id"] == "idea::1"
+    assert json.loads(feedback_path.read_text(encoding="utf-8"))[0]["idea_id"] == "idea::1"

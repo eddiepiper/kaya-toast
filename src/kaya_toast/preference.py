@@ -1,16 +1,17 @@
 from __future__ import annotations
 
-import json
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from kaya_toast.locking import atomic_json_write, file_lock, load_json_with_backup
 from kaya_toast.models import ContentIdea
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 FEEDBACK_PATH = PROJECT_ROOT / "data" / "feedback.json"
+FEEDBACK_BACKUP_PATH = PROJECT_ROOT / "data" / "feedback.backup.json"
 
 SUPPORTED_RATINGS = {
     "like",
@@ -37,11 +38,7 @@ RATING_WEIGHTS = {
 
 def load_feedback(path: str | Path = FEEDBACK_PATH) -> list[dict[str, Any]]:
     feedback_path = Path(path)
-    if not feedback_path.exists():
-        save_feedback([], feedback_path)
-
-    with feedback_path.open("r", encoding="utf-8") as file:
-        data = json.load(file)
+    data = load_json_with_backup(feedback_path, [], _backup_path(feedback_path))
 
     if not isinstance(data, list):
         raise ValueError(f"Feedback file must contain a list: {feedback_path}")
@@ -53,11 +50,8 @@ def save_feedback(
     path: str | Path = FEEDBACK_PATH,
 ) -> None:
     feedback_path = Path(path)
-    feedback_path.parent.mkdir(parents=True, exist_ok=True)
-    feedback_path.write_text(
-        json.dumps(records, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
+    with file_lock(_lock_path(feedback_path)):
+        atomic_json_write(records, feedback_path, _backup_path(feedback_path))
 
 
 def add_feedback(
@@ -70,15 +64,17 @@ def add_feedback(
         allowed = ", ".join(sorted(SUPPORTED_RATINGS))
         raise ValueError(f"Unsupported rating '{rating}'. Supported ratings: {allowed}")
 
-    records = load_feedback(path)
-    record = {
-        "idea_id": idea_id,
-        "rating": rating,
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "notes": notes,
-    }
-    records.append(record)
-    save_feedback(records, path)
+    feedback_path = Path(path)
+    with file_lock(_lock_path(feedback_path)):
+        records = load_feedback(feedback_path)
+        record = {
+            "idea_id": idea_id,
+            "rating": rating,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "notes": notes,
+        }
+        records.append(record)
+        atomic_json_write(records, feedback_path, _backup_path(feedback_path))
     return record
 
 
@@ -166,3 +162,13 @@ def _keywords_from_idea_id(idea_id: str) -> list[str]:
 def _matches_keywords(content_idea: ContentIdea, keywords: list[str]) -> bool:
     text = f"{content_idea.topic} {content_idea.suggested_angle}".lower()
     return any(keyword.lower() in text for keyword in keywords)
+
+
+def _backup_path(feedback_path: Path) -> Path:
+    if feedback_path == FEEDBACK_PATH:
+        return FEEDBACK_BACKUP_PATH
+    return feedback_path.with_name(f"{feedback_path.stem}.backup{feedback_path.suffix}")
+
+
+def _lock_path(feedback_path: Path) -> Path:
+    return feedback_path.with_suffix(f"{feedback_path.suffix}.lock")

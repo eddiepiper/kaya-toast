@@ -5,4 +5,5 @@ __pycache__/
 .env
 .venv/
 data/latest_rss_articles.json
+data/*.lock
 logs/*.log

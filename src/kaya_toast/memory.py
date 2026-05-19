@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import json
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
 from kaya_toast.config import load_positioning
+from kaya_toast.locking import atomic_json_write, load_json_with_backup
 from kaya_toast.models import ContentIdea
 from kaya_toast.preference import load_feedback
 
@@ -30,9 +30,7 @@ NEGATIVE_RATINGS = {"dislike", "too_fluffy", "too_generic", "too_technical", "we
 
 def load_memory(path: str | Path = MEMORY_PATH) -> dict[str, Any]:
     memory_path = Path(path)
-    if not memory_path.exists():
-        save_memory(DEFAULT_MEMORY.copy(), memory_path)
-    data = json.loads(memory_path.read_text(encoding="utf-8"))
+    data = load_json_with_backup(memory_path, DEFAULT_MEMORY.copy())
     merged = DEFAULT_MEMORY.copy()
     merged.update(data)
     return merged
@@ -40,8 +38,7 @@ def load_memory(path: str | Path = MEMORY_PATH) -> dict[str, Any]:
 
 def save_memory(memory: dict[str, Any], path: str | Path = MEMORY_PATH) -> None:
     memory_path = Path(path)
-    memory_path.parent.mkdir(parents=True, exist_ok=True)
-    memory_path.write_text(json.dumps(memory, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    atomic_json_write(memory, memory_path)
 
 
 def update_memory_from_feedback(

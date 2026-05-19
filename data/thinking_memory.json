@@ -1,24 +1,48 @@
 {
   "content_ideas_parked": [
-    "IDEA002"
+    "IDEA002",
+    "ai_native_pm_mindset::\ud83e\udde0-community-wisdom-what-to-do-when-non-pms-start-shipping-directly-to-production-thoughts-on-claude-code\u2019s-pricing-a/b-test-the-use-of-gen-ai-in-games-and-more",
+    "test2"
   ],
   "content_ideas_used": [
     "IDEA001",
-    "IDEA003"
+    "IDEA003",
+    "ai_pm_skills::structured-prompt-driven-development-(spdd)",
+    "enterprise_ai_operating_models::stakeholders-and-the-product-model",
+    "test1"
   ],
   "disliked_styles": [
     "generic"
   ],
   "preferred_angles": [
     "IDEA001",
-    "IDEA003"
+    "IDEA003",
+    "enterprise",
+    "operating",
+    "models",
+    "stakeholders",
+    "product",
+    "model"
   ],
   "recurring_liked_themes": [
     "IDEA001",
-    "IDEA003"
+    "IDEA003",
+    "enterprise",
+    "operating",
+    "models",
+    "stakeholders",
+    "product",
+    "model"
   ],
   "recurring_rejected_themes": [
-    "IDEA002"
+    "IDEA002",
+    "native",
+    "mindset",
+    "community",
+    "wisdom",
+    "what",
+    "when",
+    "start"
   ],
   "repeated_audience_focus": [
     "traditional PMs",
