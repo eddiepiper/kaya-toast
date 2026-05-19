@@ -42,7 +42,7 @@ Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom
 
 The common mistake is treating AI as a shortcut for PM output. The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
 
-The source-grounded point is narrower: Source title points to: Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom.
+The useful signal is narrower: The idea centers on Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom.
 
 The better move is to redesign the workflow around judgment, review, and decision quality. Explain where agentic workflows need PM-designed guardrails and review loops.
 
@@ -58,7 +58,7 @@ Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom is
 
 That framing is useful, but too narrow.
 
-The real shift is how PMs design workflows, decision loops, review points, and evidence quality when AI becomes part of the operating model. Source title points to: Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom.
+The real shift is how PMs design workflows, decision loops, review points, and evidence quality when AI becomes part of the operating model. The idea centers on Spec-driven development: The AI engineering workflow at Notion | Ryan Nystrom.
 
 For an enterprise PM, the practical implication is simple: treat AI as part of the execution loop, not magic outside the system. Explain where agentic workflows need PM-designed guardrails and review loops.
 

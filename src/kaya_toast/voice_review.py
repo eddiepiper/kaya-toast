@@ -11,6 +11,17 @@ from kaya_toast.config import load_voice
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DRAFTS_DIR = PROJECT_ROOT / "drafts"
 VOICE_REVIEW_DIR = PROJECT_ROOT / "reports" / "voice_review"
+ALLOWED_INTERNAL_SECTIONS = {"Source Grounding", "Key Evidence", "Claims To Avoid", "Risk Check"}
+INTERNAL_PIPELINE_PHRASES = [
+    "Source title points to",
+    "Daily report rationale",
+    "Suggested angle captured by the pipeline",
+    "Source summary is missing",
+    "source-grounded point",
+    "source metadata",
+    "The source says",
+    "Grounded in source review",
+]
 
 
 def generate_voice_review(
@@ -104,6 +115,10 @@ def analyze_draft_voice(text: str) -> dict[str, Any]:
     issues = []
     rewrite_lines = []
     penalties = 0
+    leakage_lines = _internal_leakage_lines(text)
+    if leakage_lines:
+        issues.append("internal pipeline leakage")
+        penalties += 40
 
     banned_phrases = [str(phrase) for phrase in voice.get("banned_phrases", [])]
     checks = [
@@ -134,6 +149,7 @@ def analyze_draft_voice(text: str) -> dict[str, Any]:
             or _contains_any(line_lower, ["prompt hack", "future of work", "ai will replace pms", "guaranteed", "proves", "game changer", "revolutionary"])
         ):
             rewrite_lines.append(line.strip())
+    rewrite_lines.extend(leakage_lines)
 
     operator_fit = "strong" if _contains_any(lower, ["enterprise", "operator", "workflow", "decision", "governance"]) else "weak"
     pm_fit = "strong" if _contains_any(lower, ["pm", "product", "ai-native", "decision loop", "workflow", "operating model"]) else "weak"
@@ -160,11 +176,16 @@ def analyze_draft_voice(text: str) -> dict[str, Any]:
         "prompt_bro_risk": "high" if "prompt-bro language" in issues else "low",
         "unsupported_claim_risk": "high" if "unsupported claim" in issues else "medium" if "Source Grounding" not in text else "low",
         "lines_to_rewrite": rewrite_lines[:8],
+        "internal_pipeline_leakage": leakage_lines,
     }
 
 
 def _verdict(signals: dict[str, Any]) -> str:
     penalties = int(signals["penalties"])
+    if signals.get("internal_pipeline_leakage") and penalties >= 60:
+        return "reject"
+    if signals.get("internal_pipeline_leakage"):
+        return "revise"
     if penalties >= 60 or signals["ai_native_pm_relevance"] == "weak":
         return "reject"
     if penalties >= 20 or signals["unsupported_claim_risk"] != "low":
@@ -219,6 +240,21 @@ def _risk_label(score: int) -> str:
 
 def _contains_any(text: str, terms: list[str]) -> bool:
     return any(term in text for term in terms)
+
+
+def _internal_leakage_lines(text: str) -> list[str]:
+    leakage = []
+    current_section = ""
+    for line in text.splitlines():
+        if line.startswith("## "):
+            current_section = line.removeprefix("## ").strip()
+            continue
+        if current_section in ALLOWED_INTERNAL_SECTIONS:
+            continue
+        line_lower = line.lower()
+        if any(phrase.lower() in line_lower for phrase in INTERNAL_PIPELINE_PHRASES):
+            leakage.append(line.strip())
+    return [line for line in leakage if line]
 
 
 def _contains_emoji(text: str) -> bool:

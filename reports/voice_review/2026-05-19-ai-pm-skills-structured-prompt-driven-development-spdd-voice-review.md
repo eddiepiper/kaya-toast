@@ -1,14 +1,14 @@
 # Voice Review: ai_pm_skills::structured-prompt-driven-development-(spdd)
 
-- Overall verdict: approve
-- Eddie voice fit: strong
+- Overall verdict: revise
+- Eddie voice fit: medium
 - Enterprise operator fit: strong
 - AI-native PM transition fit: strong
-- Anti-fluff fit: strong
+- Anti-fluff fit: weak
 - Specificity: strong
 - Practical usefulness: strong
-- Human tone: strong
-- Fluff risk: low
+- Human tone: weak
+- Fluff risk: medium
 - Prompt-bro risk: low
 - Unsupported claim risk: low
 
@@ -20,13 +20,16 @@
 - Source grounding reduces unsupported claim risk.
 
 ## What Feels Off
-- Nothing material flagged.
+- internal pipeline leakage
+- anti-fluff fit is weak
+- human tone is weak
 
 ## Lines To Rewrite
-None.
+- The source-grounded point is narrower: Source title points to: Structured-Prompt-Driven Development (SPDD).
+- The real shift is how PMs design workflows, decision loops, review points, and evidence quality when AI becomes part of the operating model. Source title points to: Structured-Prompt-Driven Development (SPDD).
 
 ## Suggested Rewrite Direction
-Keep the draft. Tighten only for specificity and source-grounded evidence.
+Rewrite toward concrete PM/operator judgment: remove hype, avoid prompt-bro phrasing, and keep claims limited to the source review and daily report metadata.
 
 ## Final Recommendation
-approve
+revise

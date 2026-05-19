@@ -7,13 +7,11 @@ Grounded in source review: /Users/edwardchiang/Documents/AI PM news agent/kaya-t
 - Source title points to: AI-native product managers design workflow review loops.
 - Daily report rationale: Traditional PMs often use AI to speed up documentation. The bigger shift is using AI to improve discovery, validation, prioritization, and workflow orchestration.
 - Suggested angle captured by the pipeline: Challenge the misconception that AI-native PM is only about productivity.
-- Source summary is missing; do not imply details beyond the daily report metadata.
 
 ## Claims To Avoid
 - Do not claim the source proves measurable business impact unless the source metadata says so.
 - Do not claim implementation details, customer results, or technical architecture not present in the daily report.
 - Do not imply LinkedIn-ready certainty if the source summary is missing.
-- Do not cite a URL or tell readers to inspect a source link that is not available.
 
 ## Recommended Angle
 Challenge the misconception that AI-native PM is only about productivity.
@@ -44,7 +42,7 @@ AI-native product managers design workflow review loops
 
 The common mistake is treating AI as a shortcut for PM output. Traditional PMs often use AI to speed up documentation. The bigger shift is using AI to improve discovery, validation, prioritization, and workflow orchestration.
 
-The source-grounded point is narrower: Source title points to: AI-native product managers design workflow review loops.
+The useful signal is narrower: The idea centers on AI-native product managers design workflow review loops.
 
 The better move is to redesign the workflow around judgment, review, and decision quality. Challenge the misconception that AI-native PM is only about productivity.
 
@@ -60,7 +58,7 @@ AI-native product managers design workflow review loops is not a tooling story.
 
 That framing is useful, but too narrow.
 
-The real shift is how PMs design workflows, decision loops, review points, and evidence quality when AI becomes part of the operating model. Source title points to: AI-native product managers design workflow review loops.
+The real shift is how PMs design workflows, decision loops, review points, and evidence quality when AI becomes part of the operating model. The idea centers on AI-native product managers design workflow review loops.
 
 For an enterprise PM, the practical implication is simple: treat AI as part of the execution loop, not magic outside the system. Challenge the misconception that AI-native PM is only about productivity.
 
@@ -76,6 +74,6 @@ A simple 3-panel carousel: 1) old PM workflow for AI-native product managers des
 What part of your PM workflow would you redesign first with AI in the loop?
 
 ## Risk Check
-- Source quality score: 90.
+- Source quality score: 100.
 - Fluff risk from daily report: 0.
 - Avoid weak angle: Good AI-native PM transition angle.

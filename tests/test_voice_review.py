@@ -66,6 +66,75 @@ def test_generic_ai_hype_is_penalized():
     assert signals["anti_fluff_fit"] == "weak"
 
 
+def test_voice_review_revises_public_internal_pipeline_leakage():
+    signals = analyze_draft_voice(
+        "\n".join(
+            [
+                "# LinkedIn Draft: leak",
+                "",
+                "## Source Grounding",
+                "Grounded in source review: allowed here.",
+                "",
+                "## Draft Version 1",
+                "Source title points to: this should not appear in public copy.",
+                "AI-native PM work is about enterprise workflow and decision loops.",
+            ]
+        )
+    )
+
+    assert "internal pipeline leakage" in signals["issues"]
+    assert signals["internal_pipeline_leakage"]
+
+
+def test_voice_review_allows_internal_phrases_in_audit_sections():
+    signals = analyze_draft_voice(
+        "\n".join(
+            [
+                "# LinkedIn Draft: ok",
+                "",
+                "## Source Grounding",
+                "Grounded in source review: allowed here.",
+                "",
+                "## Key Evidence",
+                "- Source title points to: allowed here.",
+                "",
+                "## Claims To Avoid",
+                "- Source summary is missing: allowed here.",
+                "",
+                "## Risk Check",
+                "- Daily report rationale: allowed here.",
+                "",
+                "## Draft Version 1",
+                "AI-native PM work is about enterprise workflow and decision loops.",
+            ]
+        )
+    )
+
+    assert "internal pipeline leakage" not in signals["issues"]
+
+
+def test_voice_review_report_verdict_revises_pipeline_leakage(tmp_path: Path):
+    draft = tmp_path / "2026-05-19-leaky.md"
+    draft.write_text(
+        "\n".join(
+            [
+                "# LinkedIn Draft: leaky",
+                "",
+                "## Draft Version 1",
+                "Suggested angle captured by the pipeline: this leaked into public copy.",
+                "AI-native PM work is about enterprise workflow and decision loops.",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    path = generate_voice_review(draft, output_dir=tmp_path / "voice")
+    text = path.read_text(encoding="utf-8")
+
+    assert "Overall verdict: revise" in text or "Overall verdict: reject" in text
+    assert "internal pipeline leakage" in text
+
+
 def test_all_latest_reviews_latest_date_only(tmp_path: Path, monkeypatch):
     import kaya_toast.voice_review as voice_review
 

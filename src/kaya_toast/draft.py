@@ -15,6 +15,16 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DRAFTS_DIR = PROJECT_ROOT / "drafts"
 PROMPT_PATH = PROJECT_ROOT / "prompts" / "linkedin_draft.md"
 SOURCE_REVIEW_DIR = PROJECT_ROOT / "reports" / "source_review"
+INTERNAL_PIPELINE_PHRASES = [
+    "Source title points to",
+    "Daily report rationale",
+    "Suggested angle captured by the pipeline",
+    "Source summary is missing",
+    "source-grounded point",
+    "source metadata",
+    "The source says",
+    "Grounded in source review",
+]
 
 
 def load_draft_prompt(path: str | Path = PROMPT_PATH) -> str:
@@ -184,11 +194,11 @@ def _deterministic_draft(idea: dict[str, Any], source_review: dict[str, Any] | N
     angle = str(idea.get("suggested_angle", ""))
     why = str(idea.get("why_it_matters", ""))
     evidence = source_review.get("evidence", [])
-    evidence_line = str(evidence[0]) if evidence else "The available source metadata is limited, so the claim should stay narrow."
+    evidence_line = _public_evidence_line(evidence, topic)
     return (
         f"{topic}\n\n"
         f"The common mistake is treating AI as a shortcut for PM output. {why}\n\n"
-        f"The source-grounded point is narrower: {evidence_line}\n\n"
+        f"The useful signal is narrower: {evidence_line}\n\n"
         f"The better move is to redesign the workflow around judgment, review, and decision quality. {angle}\n\n"
         "That is the real AI-native PM shift: not faster documents, better operating loops."
     )
@@ -211,7 +221,7 @@ def _eddie_style_version(idea: dict[str, Any], source_review: dict[str, Any] | N
     topic = str(idea.get("topic", idea.get("heading", "this shift")))
     angle = str(source_review.get("strong_angle") or idea.get("suggested_angle", ""))
     evidence = source_review.get("evidence", [])
-    evidence_line = str(evidence[0]) if evidence else "The available source metadata is limited."
+    evidence_line = _public_evidence_line(evidence, topic)
     positioning = voice.get("preferred_positioning", ["Enterprise AI operator"])[0]
     return "\n".join(
         [
@@ -231,6 +241,35 @@ def _eddie_style_version(idea: dict[str, Any], source_review: dict[str, Any] | N
 def _safe_filename(value: str) -> str:
     slug = re.sub(r"[^a-zA-Z0-9]+", "-", value).strip("-")
     return slug[:120] or "draft"
+
+
+def _public_evidence_line(evidence: Any, topic: str) -> str:
+    if not isinstance(evidence, list) or not evidence:
+        return "Keep the claim narrow and tied to the PM workflow shift."
+    for item in evidence:
+        cleaned = _strip_internal_pipeline_language(str(item)).strip()
+        if cleaned:
+            return cleaned
+    return f"Keep the claim focused on {topic} as a PM workflow shift."
+
+
+def _strip_internal_pipeline_language(value: str) -> str:
+    text = value
+    replacements = {
+        "Source title points to:": "The idea centers on",
+        "Daily report rationale:": "",
+        "Suggested angle captured by the pipeline:": "",
+        "Source summary is missing; do not imply details beyond the daily report metadata.": "",
+        "source-grounded point": "narrow point",
+        "source metadata": "available evidence",
+        "The source says": "The useful signal is",
+        "Grounded in source review": "Grounded in review",
+    }
+    for phrase, replacement in replacements.items():
+        text = text.replace(phrase, replacement)
+    for phrase in INTERNAL_PIPELINE_PHRASES:
+        text = re.sub(re.escape(phrase), "", text, flags=re.IGNORECASE)
+    return " ".join(text.split())
 
 
 def _load_source_review_for_idea(

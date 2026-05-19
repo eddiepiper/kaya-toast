@@ -1,6 +1,11 @@
 from pathlib import Path
 
-from kaya_toast.draft import draft_from_report, load_draft_prompt, parse_source_review
+from kaya_toast.draft import (
+    INTERNAL_PIPELINE_PHRASES,
+    draft_from_report,
+    load_draft_prompt,
+    parse_source_review,
+)
 
 
 def _report(path: Path) -> Path:
@@ -141,6 +146,47 @@ def test_source_review_path_adds_grounding_sections(tmp_path: Path, monkeypatch)
     assert "## Eddie-style Version" in text
 
 
+def test_draft_public_sections_do_not_contain_pipeline_phrases(tmp_path: Path, monkeypatch):
+    monkeypatch.setattr("kaya_toast.draft.load_llm", lambda: {"enabled": False})
+    report = _report(tmp_path / "report.md")
+    source_review = _source_review(tmp_path / "source-review.md")
+
+    path = draft_from_report(
+        report,
+        idea_id="IDEA001",
+        source_review_path=source_review,
+        drafts_dir=tmp_path / "drafts",
+    )[0]
+    text = path.read_text(encoding="utf-8")
+
+    for section in [
+        "Draft Version 1",
+        "Less GPT Version",
+        "Eddie-style Version",
+        "Enterprise Operator Angle",
+    ]:
+        section_text = _section_text(text, section)
+        assert not _contains_internal_phrase(section_text)
+
+
+def test_source_grounding_may_contain_grounding_metadata(tmp_path: Path, monkeypatch):
+    monkeypatch.setattr("kaya_toast.draft.load_llm", lambda: {"enabled": False})
+    report = _report(tmp_path / "report.md")
+    source_review = _source_review(tmp_path / "source-review.md")
+
+    path = draft_from_report(
+        report,
+        idea_id="IDEA001",
+        source_review_path=source_review,
+        drafts_dir=tmp_path / "drafts",
+    )[0]
+
+    assert "Grounded in source review" in _section_text(
+        path.read_text(encoding="utf-8"),
+        "Source Grounding",
+    )
+
+
 def test_use_source_review_top_three_drafts_three_ideas(tmp_path: Path, monkeypatch):
     monkeypatch.setattr("kaya_toast.draft.load_llm", lambda: {"enabled": False})
     report = _report(tmp_path / "2026-05-19-kaya-toast.md")
@@ -160,7 +206,12 @@ def test_parse_source_review_extracts_grounding_fields(tmp_path: Path):
 
     parsed = parse_source_review(path)
 
-    assert parsed["evidence"] == ["Source says the operating model changed."]
+    assert parsed["evidence"] == [
+        "Source title points to: Strong idea one.",
+        "Daily report rationale: Source says the operating model changed.",
+        "Suggested angle captured by the pipeline: Treat AI as workflow redesign.",
+        "Source summary is missing; do not imply details beyond the daily report metadata.",
+    ]
     assert parsed["claims_to_avoid"] == ["Do not claim revenue impact."]
     assert parsed["strong_angle"] == "Treat AI as workflow redesign."
     assert parsed["quality_score"] == "88"
@@ -173,7 +224,10 @@ def _source_review(path: Path) -> Path:
                 "# Source Review: Strong idea one",
                 "",
                 "## Evidence Extracted",
-                "- Source says the operating model changed.",
+                "- Source title points to: Strong idea one.",
+                "- Daily report rationale: Source says the operating model changed.",
+                "- Suggested angle captured by the pipeline: Treat AI as workflow redesign.",
+                "- Source summary is missing; do not imply details beyond the daily report metadata.",
                 "",
                 "## Unsupported Claims to Avoid",
                 "- Do not claim revenue impact.",
@@ -190,3 +244,16 @@ def _source_review(path: Path) -> Path:
         encoding="utf-8",
     )
     return path
+
+
+def _section_text(text: str, heading: str) -> str:
+    marker = f"## {heading}"
+    section = text.split(marker, 1)[1]
+    next_heading = section.find("\n## ")
+    if next_heading >= 0:
+        section = section[:next_heading]
+    return section
+
+
+def _contains_internal_phrase(text: str) -> bool:
+    return any(phrase.lower() in text.lower() for phrase in INTERNAL_PIPELINE_PHRASES)
