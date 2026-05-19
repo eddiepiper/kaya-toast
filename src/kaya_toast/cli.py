@@ -63,6 +63,12 @@ def build_parser() -> argparse.ArgumentParser:
     editorial_parser = subparsers.add_parser("editorial", help="Generate editorial recommendation report")
     editorial_parser.add_argument("--report", required=True, help="Path to daily report")
 
+    source_review_parser = subparsers.add_parser("source-review", help="Review source support for content ideas")
+    source_review_selection = source_review_parser.add_mutually_exclusive_group(required=True)
+    source_review_selection.add_argument("--idea-id", help="Idea ID to review")
+    source_review_selection.add_argument("--top", type=int, help="Review top N ideas")
+    source_review_parser.add_argument("--report", required=True, help="Path to daily report")
+
     return parser
 
 
@@ -171,6 +177,14 @@ def main(argv: list[str] | None = None) -> int:
 
         report_path = generate_editorial_report(args.report)
         print(f"Editorial report written: {report_path}")
+        return 0
+
+    if args.command == "source-review":
+        from kaya_toast.source_review import generate_source_reviews
+
+        review_paths = generate_source_reviews(args.report, idea_id=args.idea_id, top=args.top)
+        for review_path in review_paths:
+            print(f"Source review written: {review_path}")
         return 0
 
     parser.print_help()
