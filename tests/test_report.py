@@ -14,6 +14,8 @@ def test_report_file_is_created(tmp_path: Path):
         source_article_id="a1",
         category="ai_native_pm_mindset",
         source="Example Source",
+        source_url="https://example.com/source",
+        source_summary="A short source summary.",
         why_it_matters="It shifts PMs from documentation speed to decision quality.",
         target_audience="Traditional PMs transitioning into AI PM roles.",
         suggested_angle="Challenge the productivity-only misconception.",
@@ -32,6 +34,8 @@ def test_report_file_is_created(tmp_path: Path):
     assert "## Source Summary" in path.read_text(encoding="utf-8")
     assert "Preference Adjustment:" in path.read_text(encoding="utf-8")
     assert "Final Score:" in path.read_text(encoding="utf-8")
+    assert "URL: https://example.com/source" in path.read_text(encoding="utf-8")
+    assert "Source summary: A short source summary." in path.read_text(encoding="utf-8")
 
 
 def test_cli_run_works(tmp_path: Path, monkeypatch):

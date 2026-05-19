@@ -3,7 +3,7 @@
 ## Source
 - Title: Structured-Prompt-Driven Development (SPDD)
 - Source: Martin Fowler
-- URL: Not available in daily report.
+- URL: https://martinfowler.com/articles/structured-prompt-driven/
 - Category: ai_pm_skills
 - Idea ID: ai_pm_skills::structured-prompt-driven-development-(spdd)
 
@@ -11,10 +11,9 @@
 - Source title points to: Structured-Prompt-Driven Development (SPDD).
 - Daily report rationale: The topic helps PMs move from generic AI usage toward practical AI-native operating habits.
 - Suggested angle captured by the pipeline: Show which PM skills compound when AI becomes part of the operating model.
-- Source summary is missing; do not imply details beyond the daily report metadata.
 
 ## PM Relevance
-This matters for traditional PMs transitioning into AI-native PM roles because it can be framed as a workflow and decision-quality shift, not a generic AI tooling story. Available source summary status: Missing source summary in daily report.
+This matters for traditional PMs transitioning into AI-native PM roles because it can be framed as a workflow and decision-quality shift, not a generic AI tooling story. Available source summary status: LLM programming assistants have demonstrated considerable value, but mostly with individual developers. The internal IT organization in Thoughtworks has been using them for their teams and have developed a method and workflow called Structured Prompt-Driven Development (SPDD). Wei Zhang and Jessie Jie Xia describe a simple example of this workflow with details in github. This workflow treats the prompts as a first-class artifact, kept with the code in version control, and used to align development with business needs. They have found that developers need three key skills to be effective: alignment, abstraction-first, and iterative review. more…
 
 ## Enterprise / Operator Relevance
 Relevant for operators because the idea can be anchored in governance, workflow ownership, review loops, stakeholder alignment, or operating-model design.
@@ -23,7 +22,6 @@ Relevant for operators because the idea can be anchored in governance, workflow 
 - Do not claim the source proves measurable business impact unless the source metadata says so.
 - Do not claim implementation details, customer results, or technical architecture not present in the daily report.
 - Do not imply LinkedIn-ready certainty if the source summary is missing.
-- Do not cite a URL or tell readers to inspect a source link that is not available.
 
 ## Content Angle Recommendation
 - Strong angle: Show which PM skills compound when AI becomes part of the operating model.
@@ -31,4 +29,4 @@ Relevant for operators because the idea can be anchored in governance, workflow 
 - Recommended action: park
 
 ## Source Quality Score
-65
+80

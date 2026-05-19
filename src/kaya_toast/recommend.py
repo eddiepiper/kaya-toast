@@ -43,6 +43,8 @@ def build_content_idea(
         source_article_id=article.id,
         category=classification.category,
         source=f"{article.source}: {article.title}",
+        source_url=article.url,
+        source_summary=article.summary,
         why_it_matters=_why_it_matters(classification.category),
         target_audience=_target_audience(classification.category),
         suggested_angle=CATEGORY_ANGLES.get(
@@ -83,6 +85,8 @@ def build_content_idea(
         source_article_id=article.id,
         category=classification.category,
         source=f"{article.source}: {article.title}",
+        source_url=article.url,
+        source_summary=article.summary,
         why_it_matters=_why_it_matters(classification.category),
         target_audience=_target_audience(classification.category),
         suggested_angle=CATEGORY_ANGLES.get(

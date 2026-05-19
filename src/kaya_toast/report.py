@@ -100,6 +100,8 @@ def _render_ideas(ideas: list[ContentIdea]) -> str:
                     "- Quality Warnings:",
                     _render_quality_warning_lines(idea.quality_warnings),
                     f"- Source: {idea.source}",
+                    f"- URL: {idea.source_url or 'Not available'}",
+                    f"- Source summary: {idea.source_summary or 'Not available'}",
                     f"- Why it matters: {idea.why_it_matters}",
                     f"- Target audience: {idea.target_audience}",
                     f"- Suggested angle: {idea.suggested_angle}",
