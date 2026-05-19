@@ -71,6 +71,12 @@ def build_parser() -> argparse.ArgumentParser:
     source_review_selection.add_argument("--top", type=int, help="Review top N ideas")
     source_review_parser.add_argument("--report", required=True, help="Path to daily report")
 
+    voice_review_parser = subparsers.add_parser("voice-review", help="Review draft voice and positioning")
+    voice_review_selection = voice_review_parser.add_mutually_exclusive_group(required=True)
+    voice_review_selection.add_argument("--draft", help="Path to draft Markdown")
+    voice_review_selection.add_argument("--latest", action="store_true", help="Review latest draft")
+    voice_review_selection.add_argument("--all-latest", action="store_true", help="Review all drafts from latest date")
+
     return parser
 
 
@@ -189,6 +195,23 @@ def main(argv: list[str] | None = None) -> int:
         review_paths = generate_source_reviews(args.report, idea_id=args.idea_id, top=args.top)
         for review_path in review_paths:
             print(f"Source review written: {review_path}")
+        return 0
+
+    if args.command == "voice-review":
+        from kaya_toast.voice_review import (
+            generate_all_latest_voice_reviews,
+            generate_latest_voice_review,
+            generate_voice_review,
+        )
+
+        if args.draft:
+            review_paths = [generate_voice_review(args.draft)]
+        elif args.latest:
+            review_paths = [generate_latest_voice_review()]
+        else:
+            review_paths = generate_all_latest_voice_reviews()
+        for review_path in review_paths:
+            print(f"Voice review written: {review_path}")
         return 0
 
     parser.print_help()
