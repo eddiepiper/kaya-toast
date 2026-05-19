@@ -5,3 +5,4 @@ __pycache__/
 .env
 .venv/
 data/latest_rss_articles.json
+logs/*.log
