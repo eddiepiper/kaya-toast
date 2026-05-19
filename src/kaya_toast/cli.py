@@ -59,6 +59,8 @@ def build_parser() -> argparse.ArgumentParser:
     draft_selection.add_argument("--top", type=int, help="Draft top N post ideas")
     draft_parser.add_argument("--report", required=True, help="Path to source report")
     draft_parser.add_argument("--force", action="store_true", help="Allow drafting non-post ideas")
+    draft_parser.add_argument("--source-review", help="Path to source review report")
+    draft_parser.add_argument("--use-source-review", action="store_true", help="Use matching source review reports")
 
     editorial_parser = subparsers.add_parser("editorial", help="Generate editorial recommendation report")
     editorial_parser.add_argument("--report", required=True, help="Path to daily report")
@@ -164,6 +166,8 @@ def main(argv: list[str] | None = None) -> int:
             idea_id=args.idea_id,
             top=args.top,
             force=args.force,
+            source_review_path=args.source_review,
+            use_source_review=args.use_source_review,
         )
         if not draft_paths:
             print("No drafts created. Idea may be rejected or not found; use --force to override.")
