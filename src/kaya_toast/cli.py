@@ -60,6 +60,9 @@ def build_parser() -> argparse.ArgumentParser:
     draft_parser.add_argument("--report", required=True, help="Path to source report")
     draft_parser.add_argument("--force", action="store_true", help="Allow drafting non-post ideas")
 
+    editorial_parser = subparsers.add_parser("editorial", help="Generate editorial recommendation report")
+    editorial_parser.add_argument("--report", required=True, help="Path to daily report")
+
     return parser
 
 
@@ -161,6 +164,13 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         for draft_path in draft_paths:
             print(f"Draft written: {draft_path}")
+        return 0
+
+    if args.command == "editorial":
+        from kaya_toast.editorial import generate_editorial_report
+
+        report_path = generate_editorial_report(args.report)
+        print(f"Editorial report written: {report_path}")
         return 0
 
     parser.print_help()

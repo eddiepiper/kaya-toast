@@ -23,7 +23,7 @@ class CollectionResult:
 
 
 def collect_from_json(input_path: str | Path) -> list[Article]:
-    path = Path(input_path)
+    path = _resolve_input_path(input_path)
     with path.open("r", encoding="utf-8") as file:
         raw_articles = json.load(file)
 
@@ -43,6 +43,16 @@ def collect_from_json(input_path: str | Path) -> list[Article]:
             )
         )
     return articles
+
+
+def _resolve_input_path(input_path: str | Path) -> Path:
+    path = Path(input_path)
+    if path.exists() or path.is_absolute():
+        return path
+    project_path = PROJECT_ROOT / path
+    if project_path.exists():
+        return project_path
+    return path
 
 
 def collect_from_rss_sources(sources_config: dict[str, Any]) -> CollectionResult:
