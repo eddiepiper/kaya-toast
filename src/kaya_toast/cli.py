@@ -77,6 +77,9 @@ def build_parser() -> argparse.ArgumentParser:
     voice_review_selection.add_argument("--latest", action="store_true", help="Review latest draft")
     voice_review_selection.add_argument("--all-latest", action="store_true", help="Review all drafts from latest date")
 
+    telegram_parser = subparsers.add_parser("telegram-review", help="Run Telegram review command locally")
+    telegram_parser.add_argument("--dry-run", required=True, help="Telegram command to run without requiring a bot token")
+
     return parser
 
 
@@ -212,6 +215,13 @@ def main(argv: list[str] | None = None) -> int:
             review_paths = generate_all_latest_voice_reviews()
         for review_path in review_paths:
             print(f"Voice review written: {review_path}")
+        return 0
+
+    if args.command == "telegram-review":
+        from kaya_toast.telegram_review import handle_dry_run
+
+        result = handle_dry_run(args.dry_run)
+        print(result.response)
         return 0
 
     parser.print_help()

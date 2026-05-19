@@ -1,0 +1,4 @@
+telegram:
+  token_env: TELEGRAM_BOT_TOKEN
+  mode: manual
+  auto_post_linkedin: false
