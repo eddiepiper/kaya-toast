@@ -5,6 +5,8 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+from kaya_toast.config import load_voice
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DRAFTS_DIR = PROJECT_ROOT / "drafts"
@@ -63,7 +65,11 @@ def render_voice_review(draft_path: str | Path) -> str:
         f"- Overall verdict: {verdict}",
         f"- Eddie voice fit: {signals['eddie_voice_fit']}",
         f"- Enterprise operator fit: {signals['enterprise_operator_fit']}",
-        f"- AI-native PM relevance: {signals['ai_native_pm_relevance']}",
+        f"- AI-native PM transition fit: {signals['ai_native_pm_transition_fit']}",
+        f"- Anti-fluff fit: {signals['anti_fluff_fit']}",
+        f"- Specificity: {signals['specificity']}",
+        f"- Practical usefulness: {signals['practical_usefulness']}",
+        f"- Human tone: {signals['human_tone']}",
         f"- Fluff risk: {signals['fluff_risk']}",
         f"- Prompt-bro risk: {signals['prompt_bro_risk']}",
         f"- Unsupported claim risk: {signals['unsupported_claim_risk']}",
@@ -85,6 +91,7 @@ def render_voice_review(draft_path: str | Path) -> str:
 
 
 def analyze_draft_voice(text: str) -> dict[str, Any]:
+    voice = load_voice()
     lines = text.splitlines()
     scannable_lines = [
         line
@@ -98,13 +105,20 @@ def analyze_draft_voice(text: str) -> dict[str, Any]:
     rewrite_lines = []
     penalties = 0
 
+    banned_phrases = [str(phrase) for phrase in voice.get("banned_phrases", [])]
     checks = [
         ("emoji", _contains_emoji(text), 20),
         ("em-dash", "\u2014" in text, 10),
         ("guru tone", _contains_any(lower, ["guru", "thought leader", "masterclass", "unlock your potential"]), 20),
+        ("motivational tone", _contains_any(lower, ["believe in yourself", "unlock your potential", "be unstoppable"]), 15),
         ("prompt-bro language", _contains_any(lower, ["prompt hack", "prompt bro", "10 prompts", "mega prompt"]), 20),
         ("AI will replace PMs", "ai will replace pms" in lower or "ai replaces pms" in lower, 30),
         ("vague future-of-work claim", "future of work" in lower, 15),
+        ("generic AI optimism", _contains_any(lower, ["ai will change everything", "game changer", "revolutionary"]), 20),
+        ("too academic", _contains_any(lower, ["ontological", "epistemic", "paradigm shift"]) and "pm" not in lower, 10),
+        ("too technical without PM relevance", _contains_any(lower, ["transformer architecture", "vector embedding", "fine-tuning"]) and not _contains_any(lower, ["pm", "product", "workflow"]), 15),
+        ("excessive agentic", lower.count("agentic") > 3, 10),
+        ("banned phrase", _contains_any(lower, [phrase.lower() for phrase in banned_phrases]), 20),
         ("unsupported claim", _contains_any(lower, ["guaranteed", "proves", "will transform every", "always"]), 15),
     ]
     for label, failed, penalty in checks:
@@ -117,13 +131,17 @@ def analyze_draft_voice(text: str) -> dict[str, Any]:
         if (
             _contains_emoji(line)
             or "\u2014" in line
-            or _contains_any(line_lower, ["prompt hack", "future of work", "ai will replace pms", "guaranteed", "proves"])
+            or _contains_any(line_lower, ["prompt hack", "future of work", "ai will replace pms", "guaranteed", "proves", "game changer", "revolutionary"])
         ):
             rewrite_lines.append(line.strip())
 
     operator_fit = "strong" if _contains_any(lower, ["enterprise", "operator", "workflow", "decision", "governance"]) else "weak"
-    pm_fit = "strong" if _contains_any(lower, ["pm", "product", "ai-native", "decision loop", "workflow"]) else "weak"
-    voice_fit = "strong" if penalties <= 10 and operator_fit == "strong" and pm_fit == "strong" else "medium"
+    pm_fit = "strong" if _contains_any(lower, ["pm", "product", "ai-native", "decision loop", "workflow", "operating model"]) else "weak"
+    anti_fluff_fit = "strong" if penalties <= 10 and not _contains_any(lower, ["future of work", "game changer", "revolutionary"]) else "weak" if penalties >= 40 else "medium"
+    specificity = "strong" if _contains_any(lower, ["workflow", "decision", "review", "evidence", "governance", "operating model"]) else "weak"
+    practical_usefulness = "strong" if _contains_any(lower, ["practical", "implication", "takeaway", "workflow", "review loop"]) else "medium"
+    human_tone = "strong" if penalties <= 10 and not _contains_any(lower, ["seamlessly leverage", "unlock", "transform your career"]) else "weak" if penalties >= 40 else "medium"
+    voice_fit = "strong" if penalties <= 10 and operator_fit == "strong" and pm_fit == "strong" and specificity == "strong" else "medium"
     if penalties >= 50:
         voice_fit = "weak"
 
@@ -133,6 +151,11 @@ def analyze_draft_voice(text: str) -> dict[str, Any]:
         "eddie_voice_fit": voice_fit,
         "enterprise_operator_fit": operator_fit,
         "ai_native_pm_relevance": pm_fit,
+        "ai_native_pm_transition_fit": pm_fit,
+        "anti_fluff_fit": anti_fluff_fit,
+        "specificity": specificity,
+        "practical_usefulness": practical_usefulness,
+        "human_tone": human_tone,
         "fluff_risk": _risk_label(penalties + (0 if operator_fit == "strong" else 15)),
         "prompt_bro_risk": "high" if "prompt-bro language" in issues else "low",
         "unsupported_claim_risk": "high" if "unsupported claim" in issues else "medium" if "Source Grounding" not in text else "low",
@@ -153,8 +176,12 @@ def _what_works(signals: dict[str, Any]) -> list[str]:
     works = []
     if signals["enterprise_operator_fit"] == "strong":
         works.append("Enterprise/operator framing is visible.")
-    if signals["ai_native_pm_relevance"] == "strong":
+    if signals["ai_native_pm_transition_fit"] == "strong":
         works.append("AI-native PM relevance is clear.")
+    if signals["specificity"] == "strong":
+        works.append("Specific workflow or operating model language is present.")
+    if signals["practical_usefulness"] == "strong":
+        works.append("Practical implication is visible.")
     if signals["unsupported_claim_risk"] == "low":
         works.append("Source grounding reduces unsupported claim risk.")
     return works or ["No strong voice signals found."]
@@ -164,8 +191,12 @@ def _what_feels_off(signals: dict[str, Any]) -> list[str]:
     issues = list(signals["issues"])
     if signals["enterprise_operator_fit"] == "weak":
         issues.append("enterprise/operator framing is weak")
-    if signals["ai_native_pm_relevance"] == "weak":
+    if signals["ai_native_pm_transition_fit"] == "weak":
         issues.append("AI-native PM relevance is weak")
+    if signals["anti_fluff_fit"] == "weak":
+        issues.append("anti-fluff fit is weak")
+    if signals["human_tone"] == "weak":
+        issues.append("human tone is weak")
     return issues or ["Nothing material flagged."]
 
 

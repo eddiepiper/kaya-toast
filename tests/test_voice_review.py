@@ -29,6 +29,11 @@ def test_generate_voice_review_contains_required_sections(tmp_path: Path):
     assert "Overall verdict:" in text
     assert "Eddie voice fit:" in text
     assert "Enterprise operator fit:" in text
+    assert "AI-native PM transition fit:" in text
+    assert "Anti-fluff fit:" in text
+    assert "Specificity:" in text
+    assert "Practical usefulness:" in text
+    assert "Human tone:" in text
     assert "Unsupported claim risk:" in text
     assert "## Lines To Rewrite" in text
     assert "## Final Recommendation" in text
@@ -43,12 +48,22 @@ def test_guardrail_penalizes_bad_language():
     assert signals["unsupported_claim_risk"] == "high"
     assert signals["fluff_risk"] == "high"
     assert signals["eddie_voice_fit"] == "weak"
+    assert "banned phrase" in signals["issues"]
 
 
 def test_emoji_and_em_dash_lines_flagged():
     signals = analyze_draft_voice("Great PMs do this \U0001f680\nAI-native PMs win — always")
 
     assert len(signals["lines_to_rewrite"]) == 2
+    assert "emoji" in signals["issues"]
+    assert "em-dash" in signals["issues"]
+
+
+def test_generic_ai_hype_is_penalized():
+    signals = analyze_draft_voice("AI will change everything. This revolutionary game changer unlocks growth.")
+
+    assert "generic AI optimism" in signals["issues"]
+    assert signals["anti_fluff_fit"] == "weak"
 
 
 def test_all_latest_reviews_latest_date_only(tmp_path: Path, monkeypatch):

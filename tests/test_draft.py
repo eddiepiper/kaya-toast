@@ -101,8 +101,10 @@ def test_no_api_key_still_produces_deterministic_outline(tmp_path: Path, monkeyp
     assert "## Source Grounding" in text
     assert "## Claims To Avoid" in text
     assert "## Enterprise Operator Angle" in text
+    assert "## Eddie-style Version" in text
     assert "## Risk Check" in text
     assert "That is the real AI-native PM shift" in text
+    assert "not a tooling story" in text
 
 
 def test_mock_llm_draft_generation(tmp_path: Path, monkeypatch):
@@ -136,6 +138,7 @@ def test_source_review_path_adds_grounding_sections(tmp_path: Path, monkeypatch)
     assert "Source says the operating model changed." in text
     assert "Do not claim revenue impact." in text
     assert "## Visual / Carousel Suggestion" in text
+    assert "## Eddie-style Version" in text
 
 
 def test_use_source_review_top_three_drafts_three_ideas(tmp_path: Path, monkeypatch):

@@ -11,6 +11,9 @@ Rules:
 - Keep output concise.
 - Do not generate a full LinkedIn post yet.
 - Avoid excessive use of "agentic".
+- Use Eddie's voice: direct, practical, enterprise-aware, and mildly sharp when needed.
+- Avoid guru framing, motivational tone, emojis, em-dashes, vague future-of-work claims, and prompt-bro positioning.
+- Prefer workflow, operating model, decision system, governance, human review, and execution loop language.
 
 Return:
 - strategic interpretation

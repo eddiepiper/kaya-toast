@@ -7,7 +7,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
-from kaya_toast.config import load_llm
+from kaya_toast.config import load_llm, load_voice
 from kaya_toast.interpret import call_openrouter
 
 
@@ -133,6 +133,9 @@ def render_draft(idea: dict[str, Any], source_review: dict[str, Any] | None = No
             "## Less GPT Version",
             _less_gpt_version(idea, source_review),
             "",
+            "## Eddie-style Version",
+            _eddie_style_version(idea, source_review),
+            "",
             "## Enterprise Operator Angle",
             _enterprise_operator_angle(idea, source_review),
             "",
@@ -199,6 +202,29 @@ def _less_gpt_version(idea: dict[str, Any], source_review: dict[str, Any] | None
         f"I keep coming back to this: {topic}.\n\n"
         "For PMs, the useful question is not how to make AI write more. "
         f"It is where AI changes the way we decide, validate, and review work. {angle}"
+    )
+
+
+def _eddie_style_version(idea: dict[str, Any], source_review: dict[str, Any] | None = None) -> str:
+    source_review = source_review or {}
+    voice = load_voice()
+    topic = str(idea.get("topic", idea.get("heading", "this shift")))
+    angle = str(source_review.get("strong_angle") or idea.get("suggested_angle", ""))
+    evidence = source_review.get("evidence", [])
+    evidence_line = str(evidence[0]) if evidence else "The available source metadata is limited."
+    positioning = voice.get("preferred_positioning", ["Enterprise AI operator"])[0]
+    return "\n".join(
+        [
+            f"{topic} is not a tooling story.",
+            "",
+            "That framing is useful, but too narrow.",
+            "",
+            f"The real shift is how PMs design workflows, decision loops, review points, and evidence quality when AI becomes part of the operating model. {evidence_line}",
+            "",
+            f"For an enterprise PM, the practical implication is simple: treat AI as part of the execution loop, not magic outside the system. {angle}",
+            "",
+            f"That is the lane: {positioning}",
+        ]
     )
 
 

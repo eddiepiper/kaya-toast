@@ -1,0 +1,69 @@
+preferred_tone:
+  - direct
+  - practical
+  - operator_led
+  - strategic_not_fluffy
+  - enterprise_aware
+  - banking_product_aware
+  - mildly_sharp
+  - human_not_over_polished
+
+avoid_tone:
+  - guru
+  - hype
+  - motivational
+  - generic_ai_influencer
+  - prompt_bro
+  - vague_future_of_work
+  - over_polished
+
+preferred_positioning:
+  - Enterprise AI operator documenting how product management changes when AI becomes part of the operating model.
+
+avoid_positioning:
+  - AI guru
+  - AI influencer
+  - prompt engineer
+  - hype creator
+  - generic productivity creator
+  - frontier AI researcher
+  - motivational LinkedIn writer
+
+preferred_phrases:
+  - workflows over tools
+  - decision systems over documents
+  - operating models over productivity hacks
+  - governance and human review as product work
+  - execution loops
+  - traditional PM to AI-native PM transition
+  - enterprise AI operator
+  - banking product reality
+
+banned_phrases:
+  - AI will change everything
+  - AI will replace PMs
+  - future of work
+  - 10 prompts
+  - prompt hack
+  - ultimate guide
+  - unlock your potential
+  - thought leader
+  - game changer
+  - revolutionary
+  - agentic everything
+
+post_structure:
+  - Start with a clear observation.
+  - Explain the shift.
+  - Ground it in PM or enterprise workflow reality.
+  - Add a practical implication.
+  - End with a simple takeaway or question.
+
+style_rules:
+  - No emojis.
+  - No em-dashes.
+  - No guru tone.
+  - No generic productivity hacks.
+  - No vague future-of-work claims.
+  - Use workflow, operating model, and decision system language.
+  - Keep claims source-grounded.
