@@ -80,6 +80,8 @@ def build_parser() -> argparse.ArgumentParser:
     telegram_parser = subparsers.add_parser("telegram-review", help="Run Telegram review command locally")
     telegram_parser.add_argument("--dry-run", required=True, help="Telegram command to run without requiring a bot token")
 
+    subparsers.add_parser("index", help="Generate GitHub mobile report index")
+
     return parser
 
 
@@ -222,6 +224,13 @@ def main(argv: list[str] | None = None) -> int:
 
         result = handle_dry_run(args.dry_run)
         print(result.response)
+        return 0
+
+    if args.command == "index":
+        from kaya_toast.report_index import generate_report_index
+
+        index_path = generate_report_index()
+        print(f"Report index written: {index_path}")
         return 0
 
     parser.print_help()
