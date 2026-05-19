@@ -64,5 +64,23 @@
     "run_id": "daily-20260519002423",
     "timestamp": "2026-05-19T00:24:23.635308+00:00",
     "warnings": []
+  },
+  {
+    "articles_collected": 1,
+    "ideas_generated": 1,
+    "report_path": "/Users/edwardchiang/Documents/AI PM news agent/kaya-toast/reports/daily/2026-05-19-kaya-toast.md",
+    "run_id": "daily-20260519040041",
+    "timestamp": "2026-05-19T04:00:41.108723+00:00",
+    "warnings": [
+      "Product Talk: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "SVPG Articles: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "Lenny's Newsletter: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "Google AI Blog: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "Microsoft AI Blog: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "AWS Machine Learning Blog: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "Martin Fowler: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "OpenAI News: RSS parse warning: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "RSS collection returned no articles; used fallback /Users/edwardchiang/Documents/AI PM news agent/kaya-toast/data/latest_rss_articles.json"
+    ]
   }
 ]

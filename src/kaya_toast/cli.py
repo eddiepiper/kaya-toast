@@ -81,6 +81,7 @@ def build_parser() -> argparse.ArgumentParser:
     telegram_parser.add_argument("--dry-run", required=True, help="Telegram command to run without requiring a bot token")
 
     subparsers.add_parser("index", help="Generate GitHub mobile report index")
+    subparsers.add_parser("v2-flow", help="Run manual V2 review flow")
 
     return parser
 
@@ -231,6 +232,13 @@ def main(argv: list[str] | None = None) -> int:
 
         index_path = generate_report_index()
         print(f"Report index written: {index_path}")
+        return 0
+
+    if args.command == "v2-flow":
+        from kaya_toast.v2_flow import render_v2_flow_result, run_v2_flow
+
+        result = run_v2_flow()
+        print(render_v2_flow_result(result))
         return 0
 
     parser.print_help()
