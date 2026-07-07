@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-PROJECT_DIR="/Users/edwardchiang/Documents/AI PM news agent/kaya-toast"
-PROJECT_PARENT="/Users/edwardchiang/Documents/AI PM news agent"
+PROJECT_DIR="/Users/edwardchiang/automations/kaya-toast/kaya-toast"
+PROJECT_PARENT="/Users/edwardchiang/automations/kaya-toast"
 LOG_DIR="$PROJECT_DIR/logs"
 LOG_FILE="$LOG_DIR/daily_update.log"
 SUBTREE_PREFIX="kaya-toast"
