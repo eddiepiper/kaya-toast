@@ -98,5 +98,13 @@
     "run_id": "daily-20260722000018",
     "timestamp": "2026-07-22T00:00:18.578916+00:00",
     "warnings": []
+  },
+  {
+    "articles_collected": 90,
+    "ideas_generated": 64,
+    "report_path": "/Users/edwardchiang/automations/kaya-toast/kaya-toast/reports/daily/2026-07-23-kaya-toast.md",
+    "run_id": "daily-20260723000015",
+    "timestamp": "2026-07-23T00:00:15.235359+00:00",
+    "warnings": []
   }
 ]
